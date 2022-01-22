@@ -9,6 +9,7 @@ import {
 /* Import Files */
 import Cookies from "js-cookie";
 import Navigation from "./Navigation";
+import TestFileUpload from "./TestFileUpload";
 
 export default function Routes() {
   const user = useStoreState((state) => state.user.data);
@@ -24,7 +25,9 @@ export default function Routes() {
     <Router>
       <Navigation />
       <Switch>
-        <Route path="/" component={() => <div>Hey there</div>} />
+        <Route exact path="/" component={() => <div>Hey there</div>} />
+        <Route exact path="/upload" component={() => <TestFileUpload />} />
+
         {/* {isAdmin && [
           <Route path="/login">
             <Redirect to="/dashboard" />

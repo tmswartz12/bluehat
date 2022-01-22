@@ -1,14 +1,15 @@
-const router = require('express').Router();
+const router = require("express").Router();
 module.exports = router;
-const { attachUserToRequest } = require('../middleware/authMiddleware');
-
+const { attachUserToRequest } = require("../middleware/authMiddleware");
 
 router.use(attachUserToRequest);
-router.use('/user', require('./user'));
+router.use("/user", require("./user"));
+router.use("/business", require("./business"));
+router.use("/card", require("./card"));
+router.use("/transaction", require("./transaction"));
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found Here');
+  const error = new Error("Not Found Here");
   error.status = 404;
   next(error);
-})
-;
+});

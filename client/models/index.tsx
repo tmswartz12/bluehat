@@ -1,11 +1,14 @@
-import user, { UserModel } from './user'
+import receipt, { ReceiptModel } from "./receipt";
+import user, { UserModel } from "./user";
 
 export interface StoreModel {
-  user: UserModel
+  user: UserModel;
+  receipt: ReceiptModel;
 }
 
 const model: StoreModel = {
-  user
-}
+  user,
+  receipt,
+};
 
-export default model
+export default model;
