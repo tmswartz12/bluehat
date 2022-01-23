@@ -36,9 +36,21 @@ const INDUSTRY_TYPE = {
   otherEducationServices: "otherEducationServices",
 };
 
+const BLUE_HAT_STATUS = {
+  pending_credit_decision: "pending_credit_decision",
+  approved: "approved",
+  rejected: "rejected",
+};
+
 const businessSchema = new mongoose.Schema({
   legalName: String, //legal name of the business
   dba: String,
+  creditLimit: { type: Number, default: 0, required: true },
+  blueHatStatus: {
+    type: String,
+    enum: Object.values(BLUE_HAT_STATUS),
+    default: BLUE_HAT_STATUS.pending_credit,
+  },
   entityType: {
     type: String,
     enum: Object.values(ENTITY_TYPE),

@@ -21,7 +21,7 @@ const user: ReceiptModel = {
   uploadReceipt: thunk(async (actions, body) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/transaction/upload",
+        "http://localhost:8080/api/receipt/upload",
         body
       );
       const receipt = data.receipt;

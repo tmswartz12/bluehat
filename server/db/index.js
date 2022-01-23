@@ -6,6 +6,9 @@ const { Business } = require("./business");
 const { Kyb } = require("./kyb");
 const { BankAccount } = require("./bankAccount");
 const { Card } = require("./card");
+const { Receipt } = require("./receipt");
+const { Transaction } = require("./transaction");
+const { PayPeriod } = require("./payPeriod");
 
 module.exports = {
   db,
@@ -16,4 +19,7 @@ module.exports = {
   Kyb,
   BankAccount,
   Card,
+  Receipt,
+  Transaction,
+  PayPeriod,
 };

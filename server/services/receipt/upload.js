@@ -2,6 +2,8 @@ const logger = require("pino")();
 const { default: Axios } = require("axios");
 const request = require("request");
 var FormData = require("form-data");
+var fs = require("fs");
+const { exit } = require("process");
 
 const upload = async (file) => {
   try {
@@ -9,44 +11,39 @@ const upload = async (file) => {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${process.env.BUTLER_LABS_API_KEY}`,
     };
+    const apiBaseUrl = "https://app.butlerlabs.ai/api";
+    const authHeaders = {
+      Authorization: `Bearer ${process.env.BUTLER_LABS_API_KEY}`,
+    };
+    const queueId = process.env.BUTLER_LABS_QUEUE_ID;
 
-    const body = {};
+    // Specify the path to the file you would like to process
+    const filePaths = [`${file.path}`];
 
-    // `files=@<PATH_TO_MY_FILE>;type=<MIME_TYPE_OF_FILE></MIME_TYPE_OF_FILE>`
+    // Specify the API URL
+    const uploadUrl = `${apiBaseUrl}/queues/${queueId}/uploads`;
     const formData = new FormData();
-    formData.append("files", file);
 
-    axios({
-      method: "post",
-      url: `https://app.butlerlabs.ai/api/queues/${process.env.BUTLER_LABS_QUEUE_ID}/uploads`,
-      data: formData,
-      headers,
+    filePaths.forEach((filePath) => {
+      console.log(filePath);
+      formData.append("files", fs.createReadStream(filePath));
     });
-    // const { data } = await Axios.post(
-    //   `https://app.butlerlabs.ai/api/queues/${process.env.BUTLER_LABS_QUEUE_ID}/uploads`,
-    //   file,
-    //   {
-    //     headers,
-    //   }
-    // );
+    // Upload files to the upload API
+    let uploadId;
+    const { data } = await Axios.post(uploadUrl, formData, {
+      headers: { ...authHeaders, ...formData.getHeaders() },
+    });
+    // .then((uploadRes) => {
+    //   // Get the Upload ID
+    //   uploadId = uploadRes.data.uploadId;
+    //   console.log("uploadId", uploadId);
+    //   return uploadId;
+    // });
 
-    // request.post(
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${process.env.BUTLER_LABS_API_KEY}`,
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //     url: `https://app.butlerlabs.ai/api/queues/${process.env.BUTLER_LABS_QUEUE_ID}/uploads`,
-    //     formData: file,
-    //     data: file,
-    //   },
-    //   function (err, res, body) {
-    //     //it works!
-    //     // console.log("res", res);
-    //   }
-    // );
+    return data.uploadId;
 
-    // console.log("data", data);
+    console.log("uploadId", uploadId);
+    return uploadId;
   } catch (error) {
     console.log("error", error);
   }
