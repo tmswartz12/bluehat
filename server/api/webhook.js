@@ -15,10 +15,11 @@ module.exports = router;
 const WEBHOOK_EVENTS = {
   BUSINESS_KYC_APPROVED: "business.kyb.approved",
   PERSON_KYC_APPROVED: "person.kyc.approved",
+  CARD_SPEND: "card.spend",
 };
 
 router.post("/", async (req, res, next) => {
-  console.log("webhook", req);
+  console.log("webhook", req.body);
 
   try {
     const event = req.body.eventType;
@@ -29,6 +30,9 @@ router.post("/", async (req, res, next) => {
     }
     if (event === WEBHOOK_EVENTS.BUSINESS_KYC_APPROVED) {
       console.log("handle kyb approval", req.body.data);
+    }
+    if (event === WEBHOOK_EVENTS.CARD_SPEND) {
+      console.log("handle card spend", req.body.data);
     }
   } catch (error) {
     console.log("error", error);
