@@ -2,12 +2,14 @@
 
 ## Getting Started - Setup && Pre Req's
 
-- install node on your machine [download link](https://nodejs.org/en/download/)
-- setup homebrew [setup instructions] (https://brew.sh/)
+- install node on your machine - [download link](https://nodejs.org/en/download/)
+- setup homebrew - [setup instructions](https://brew.sh/)
 - install mongodb
- - `brew tap mongodb/brew`
- - `brew install mongodb-community@5.0`
- - optional: install mongodb compass GUI [download link](https://www.mongodb.com/products/compass)
+  - `brew tap mongodb/brew`
+  - `brew install mongodb-community@5.0`
+  - optional: install mongodb compass GUI - [download link](https://www.mongodb.com/products/compass)
+- install ngrok
+  - `brew install --cask ngrok`
 
 
 Once you are added to the team repo, pull down the codebase and add a `.env` file at the root.
