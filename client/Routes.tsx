@@ -25,7 +25,7 @@ export default function Routes() {
     <Router>
       <Navigation />
       <Switch>
-        <Route exact path="/" component={() => <div>Hey there</div>} />
+        <Route exact path="/" component={() => <div>Dashboard</div>} />
         <Route exact path="/upload" component={() => <TestFileUpload />} />
 
         {/* {isAdmin && [
