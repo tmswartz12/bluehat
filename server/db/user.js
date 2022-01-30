@@ -2,12 +2,23 @@ const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const crypto = require("crypto");
 
+const ONBOARDING_STATUS = {
+  userInfo: "userInfo",
+  businessInfo: "businessInfo",
+  complete: "complete",
+};
+
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true, index: true },
   firstName: String,
   lastName: String,
   password: String,
-  phone: { type: "String", required: false, unique: true },
+  phone: { type: "String" },
+  onboardingStatus: {
+    type: String,
+    default: ONBOARDING_STATUS.userInfo,
+    enum: Object.values(ONBOARDING_STATUS),
+  },
   dateOfBirth: String, // YYYY-MM-DD
   idNumber: String, // ex. "223902235"
   idType: String, // ssn

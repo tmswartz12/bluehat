@@ -8,6 +8,16 @@ const KycService = require("../services/kyc");
 
 module.exports = router;
 
+router.get("/", async (req, res, next) => {
+  try {
+    console.log("trying", req.user);
+    return res.json({ user: req.user });
+  } catch (error) {
+    console.log("error", error);
+    return res.status(500).json({ error });
+  }
+});
+
 router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.create({

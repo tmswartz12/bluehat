@@ -38,6 +38,7 @@
     "express": "^4.17.1",
     "express-useragent": "^1.0.15",
     "form-data": "^4.0.0",
+    "formik": "^2.2.9",
     "heroku-ssl-redirect": "^0.1.1",
     "history": "^4.10.1",
     "js-cookie": "^2.2.1",
@@ -58,7 +59,9 @@
     "react-toastify": "^5.4.0",
     "regenerator-runtime": "^0.13.9",
     "request": "^2.88.2",
-    "save": "^2.4.0"
+    "save": "^2.4.0",
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
