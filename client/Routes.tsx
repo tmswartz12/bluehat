@@ -23,9 +23,17 @@ export default function Routes() {
     getUser();
   }, []);
 
+  /**
+   *
+   * This function holds our entire router together.
+   * We default out user.onboardingStatus type to 'complete'
+   * If the getUser request returns anything but complete we know to render onboarding
+   * If we have no user at all. We know to render the register screen
+   *
+   * @returns boolean
+   */
   const showOnboarding = () => {
     if (user && user.onboardingStatus !== "complete") {
-      console.log("running");
       return true;
     } else {
       return false;
@@ -37,20 +45,29 @@ export default function Routes() {
       <Navigation />
       <Switch>
         {!hasCookie && <Route exact path="/" component={() => <Register />} />}
-        <Route exact path="/onboarding" component={() => <Onboarding />} />
-        <Route exact path="/upload" component={() => <TestFileUpload />} />
-        <Route exact path="/" component={() => <div>Dashboard</div>} />
-
-        {/* {isAdmin && [
-          <Route path="/login">
-            <Redirect to="/dashboard" />
-          </Route>
-        ]} */}
-
-        <Route path="/">
-          {!user && <Redirect to="/login" />}
-          {showOnboarding() && <Redirect to="/onboarding" />}
-        </Route>
+        {!showOnboarding() && [
+          <Route
+            exact
+            path="/projects"
+            component={() => <div>Projects</div>}
+          />,
+          <Route exact path="/upload" component={() => <TestFileUpload />} />,
+        ]}
+        {showOnboarding() && [
+          <Route exact path="/onboarding" component={() => <Onboarding />} />,
+          <Route path="/">
+            <Redirect to="/onboarding" />
+          </Route>,
+        ]}
+        <Route exact path="/cards" component={() => <div>Cards</div>} />,
+        <Route exact path="/" component={() => <div>Dashboard</div>} />,
+        <Route exact path="/projects" component={() => <div>Projects</div>} />,
+        <Route exact path="/upload" component={() => <TestFileUpload />} />,
+        {!showOnboarding() && [
+          <Route path="/">
+            <Redirect to="/" />
+          </Route>,
+        ]}
       </Switch>
     </Router>
   );

@@ -1,9 +1,12 @@
 import React from "react";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
+import { useStoreState, useStoreActions } from "./store";
+
 import Cookies from "js-cookie";
 
 const Navigation = () => {
   const hasCookie = Boolean(Cookies.get("blueHatAuth"));
+  const user = useStoreState((state) => state.user.data);
 
   /**
    * This is the Navbar for logged out users & users who have not completed onboarding
@@ -12,7 +15,7 @@ const Navigation = () => {
   /**
    * This is the Navbar for logged in users past onboarding
    */
-  if (hasCookie) {
+  if (user && user.onboardingStatus === "complete") {
     return (
       <Navbar collapseOnSelect expand="lg">
         <Container fluid>

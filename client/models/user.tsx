@@ -17,7 +17,7 @@ const initialUser: User = {
   lastName: "",
   email: "",
   isAdmin: false,
-  onboardingStatus: "userInfo",
+  onboardingStatus: "complete",
 };
 
 const user: UserModel = {
