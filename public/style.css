@@ -1,0 +1,76 @@
+body {
+  background-color: #f8f9fa !important;
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+  background-color: #f8f9fa !important;
+}
+
+.pro-sidebar
+  .pro-menu.shaped
+  .pro-menu-item
+  > .pro-inner-item
+  > .pro-icon-wrapper {
+  background-color: transparent !important;
+}
+
+.pro-inner-item {
+  font-family: "Exo" !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+
+  color: #70838c;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item {
+  height: 40px;
+  margin-top: 16px;
+}
+
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+  background-color: #f8f9fa !important;
+  height: 26px !important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover {
+  color: #1698d9 !important;
+  background-color: #d9f2ff !important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:active {
+  color: #1698d9 !important;
+  background-color: #d9f2ff !important;
+  border-left: #30b2f2 4px solid !important;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus {
+  color: #1698d9 !important;
+  background-color: #d9f2ff !important;
+  border-left: #30b2f2 4px solid !important;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus-visible {
+  color: #1698d9 !important;
+  background-color: #d9f2ff !important;
+  border-left: #30b2f2 4px solid !important;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus-within {
+  color: #1698d9 !important;
+  background-color: #d9f2ff !important;
+  border-left: #30b2f2 4px solid !important;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:visited {
+  color: #1698d9 !important;
+  background-color: #d9f2ff !important;
+  border-left: #30b2f2 4px solid !important;
+}
+
+.coming-soon-badge {
+  padding: 3px 6px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  color: #ffffff;
+  background: #777777;
+}

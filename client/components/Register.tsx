@@ -41,16 +41,24 @@ const Register = () => {
           <p className="mt-3">The Contractor's Credit Card </p>
         </RegistrationPanelLeft>
         <RegistrationPanelRight xs={6}>
-          <Row>
-            <CenteredCol xs={12}>
+          <Row style={{ paddingLeft: 125, paddingRight: 125 }}>
+            <Col style={{ flexDirection: "column" }}>
+              <div>
+                <h1>Welcome to BlueHat</h1>
+              </div>
+              <div>
+                <p>Enter your email to get started</p>
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-5" style={{ paddingLeft: 125, paddingRight: 125 }}>
+            <Col xs={12}>
               <Form noValidate onSubmit={formik.handleSubmit}>
-                <Form.Label style={{ fontWeight: "600" }}>
-                  Enter your email to get started...
-                </Form.Label>
+                <Form.Label style={{ fontWeight: "600" }}>Email</Form.Label>
                 <Form.Control
                   type="text"
                   name="email"
-                  style={{ width: "400px" }}
+                  // style={{ width: "400px" }}
                   value={formik.values.email}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -64,14 +72,14 @@ const Register = () => {
                   {formik.errors.email}
                 </Form.Control.Feedback>
               </Form>
-            </CenteredCol>
+            </Col>
           </Row>
-          <Row>
-            <CenteredCol xs={12}>
+          <Row style={{ paddingLeft: 125, paddingRight: 125 }}>
+            <Col xs={12}>
               <Button
                 block
                 className="mt-3"
-                style={{ width: 400 }}
+                // style={{ width: 400 }}
                 onClick={() => {
                   formik.submitForm(formik.values);
                 }}
@@ -79,14 +87,14 @@ const Register = () => {
               >
                 Get Started
               </Button>
-            </CenteredCol>
+            </Col>
           </Row>
-          <Row className="mt-3">
-            <CenteredCol xs={12} style={{ width: 400 }}>
-              <div style={{ width: 400 }}>
-                <p style={{ width: 400 }}> Forgot your password?</p>
+          <Row className="mt-3" style={{ paddingLeft: 125, paddingRight: 125 }}>
+            <Col xs={12}>
+              <div>
+                <p> Forgot your password?</p>
               </div>
-            </CenteredCol>
+            </Col>
           </Row>
         </RegistrationPanelRight>
       </Row>

@@ -12,6 +12,12 @@ import Navigation from "./Navigation";
 import TestFileUpload from "./TestFileUpload";
 import Register from "./components/Register";
 import Onboarding from "./components/Onboarding";
+import Dashboard from "./components/Dashboard";
+import Transactions from "./components/Transactions";
+import Cards from "./components/Cards";
+import Projects from "./components/Projects";
+import Company from "./components/Company";
+
 import history from "./history";
 
 export default function Routes() {
@@ -42,33 +48,45 @@ export default function Routes() {
 
   return (
     <Router>
-      <Navigation />
-      <Switch>
-        {!hasCookie && <Route exact path="/" component={() => <Register />} />}
-        {!showOnboarding() && [
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <Navigation />
+        <Switch>
+          {!hasCookie && (
+            <Route exact path="/" component={() => <Register />} />
+          )}
+          {/* {!showOnboarding() && [
+            <Route
+              exact
+              path="/projects"
+              component={() => <div>Projects</div>}
+            />,
+            <Route exact path="/upload" component={() => <TestFileUpload />} />,
+          ]} */}
+          {showOnboarding() && [
+            <Route exact path="/onboarding" component={() => <Onboarding />} />,
+            <Route path="/">
+              <Redirect to="/onboarding" />
+            </Route>,
+          ]}
+          <Route exact path="/" component={() => <Dashboard />} />,
+          <Route exact path="/cards" component={() => <Cards />} />,
+          <Route exact path="/company" component={() => <Company />} />,
+          <Route exact path="/projects" component={() => <Projects />} />
+          ,
           <Route
             exact
-            path="/projects"
-            component={() => <div>Projects</div>}
-          />,
+            path="/transactions"
+            component={() => <Transactions />}
+          />
+          ,
           <Route exact path="/upload" component={() => <TestFileUpload />} />,
-        ]}
-        {showOnboarding() && [
-          <Route exact path="/onboarding" component={() => <Onboarding />} />,
-          <Route path="/">
-            <Redirect to="/onboarding" />
-          </Route>,
-        ]}
-        <Route exact path="/cards" component={() => <div>Cards</div>} />,
-        <Route exact path="/" component={() => <div>Dashboard</div>} />,
-        <Route exact path="/projects" component={() => <div>Projects</div>} />,
-        <Route exact path="/upload" component={() => <TestFileUpload />} />,
-        {!showOnboarding() && [
-          <Route path="/">
-            <Redirect to="/" />
-          </Route>,
-        ]}
-      </Switch>
+          {!showOnboarding() && [
+            <Route path="/">
+              <Redirect to="/" />
+            </Route>,
+          ]}
+        </Switch>
+      </div>
     </Router>
   );
 }
