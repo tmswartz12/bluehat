@@ -19,7 +19,7 @@ import { MdDomain } from "react-icons/md";
 const TransactionsHeader = () => {
   return (
     <WhiteSiteRow>
-      <Col xs={5}>
+      <Col xs={12} md={5}>
         <Row>
           <Col>
             <div>
@@ -53,7 +53,7 @@ const TransactionsHeader = () => {
           </Col>
         </Row>
         <Row style={{ marginTop: 16 }}>
-          <Col>
+          <Col xs={6} sm={4}>
             <div>
               <TransactionSmallBody>Next Payment</TransactionSmallBody>
             </div>
@@ -61,7 +61,7 @@ const TransactionsHeader = () => {
               <TransactionLargeBody>Mar 31</TransactionLargeBody>
             </div>
           </Col>
-          <Col>
+          <Col xs={6} sm={4}>
             <div>
               <TransactionSmallBody>Available Cashback</TransactionSmallBody>
             </div>
@@ -71,10 +71,10 @@ const TransactionsHeader = () => {
           </Col>
         </Row>
       </Col>
-      <Col sm={1}></Col>
+      <Col sm={0} md={1}></Col>
       <Col style={{ alignItems: "flex-start" }}>
         <Row>
-          <Col xs={4}>
+          <Col xs={6} sm={4}>
             <div>
               <TransactionSmallBody>Next Payment</TransactionSmallBody>
             </div>
@@ -88,7 +88,7 @@ const TransactionsHeader = () => {
               <NextPaymentBadge>Mar 31</NextPaymentBadge>
             </div>
           </Col>
-          <Col xs={4}>
+          <Col xs={6} sm={4}>
             <div>
               <TransactionSmallBody>Next Payment</TransactionSmallBody>
             </div>
@@ -102,7 +102,7 @@ const TransactionsHeader = () => {
               <TransactionsBody>Apr 30</TransactionsBody>
             </div>
           </Col>
-          <Col xs={4}>
+          <Col xs={12} sm={4}>
             <div>
               <TransactionSmallBody>Next Payment</TransactionSmallBody>
             </div>

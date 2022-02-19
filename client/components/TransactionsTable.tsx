@@ -35,7 +35,7 @@ import {
   MdDomain
 } from "react-icons/md";
 
-const TransactionsTable = () => {
+const TransactionsTable = ({handleSelectTransaction}) => {
     return(
         <WhiteSiteRow>
         <Col xs={12}>
@@ -75,7 +75,7 @@ const TransactionsTable = () => {
               <Form.Label>
                 <TransactionSmallBody>Projects</TransactionSmallBody>
               </Form.Label>
-              <Form.Control as="select" aria-label="Default select example">
+              <Form.Control as="select" aria-label="Default select example" className="show-tick">
                 {/* <option>Open this select menu</option> */}
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -109,7 +109,7 @@ const TransactionsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow>
+                  <TableRow onClick={() => handleSelectTransaction({name: 'tyler'})}>
                     <BlueHatTableCell></BlueHatTableCell>
                     <DetailsCell>
                       <div>F.W. Webb Plumbing Supply</div>
