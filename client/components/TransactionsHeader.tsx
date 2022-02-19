@@ -7,6 +7,8 @@ import {
   TotalAvailable,
   TransactionSmallBody,
   TransactionLargeBody,
+  TransactionsBody,
+  NextPaymentBadge,
 } from "./Transactions.styled";
 
 import { FaClipboardCheck, FaReceipt } from "react-icons/fa";
@@ -69,7 +71,53 @@ const TransactionsHeader = () => {
           </Col>
         </Row>
       </Col>
-      <RightCol>Hey</RightCol>
+      <Col sm={1}></Col>
+      <Col style={{ alignItems: "flex-start" }}>
+        <Row>
+          <Col xs={4}>
+            <div>
+              <TransactionSmallBody>Next Payment</TransactionSmallBody>
+            </div>
+            <div style={{ marginTop: 4 }}>
+              <TransactionLargeBody>Mar 31</TransactionLargeBody>
+            </div>
+            <div style={{ marginTop: 8 }}>
+              <TransactionSmallBody>Payment Due By</TransactionSmallBody>
+            </div>
+            <div style={{ marginTop: 4 }}>
+              <NextPaymentBadge>Mar 31</NextPaymentBadge>
+            </div>
+          </Col>
+          <Col xs={4}>
+            <div>
+              <TransactionSmallBody>Next Payment</TransactionSmallBody>
+            </div>
+            <div style={{ marginTop: 4 }}>
+              <TransactionLargeBody>Mar 31</TransactionLargeBody>
+            </div>
+            <div style={{ marginTop: 8 }}>
+              <TransactionSmallBody>Payment Due By</TransactionSmallBody>
+            </div>
+            <div style={{ marginTop: 4 }}>
+              <TransactionsBody>Apr 30</TransactionsBody>
+            </div>
+          </Col>
+          <Col xs={4}>
+            <div>
+              <TransactionSmallBody>Next Payment</TransactionSmallBody>
+            </div>
+            <div style={{ marginTop: 4 }}>
+              <TransactionLargeBody>Mar 1 - Mar 31</TransactionLargeBody>
+            </div>
+            <div style={{ marginTop: 8 }}>
+              <TransactionSmallBody>Payment Due By</TransactionSmallBody>
+            </div>
+            <div style={{ marginTop: 4 }}>
+              <TransactionsBody>Apr 30</TransactionsBody>
+            </div>
+          </Col>
+        </Row>
+      </Col>
     </WhiteSiteRow>
   );
 };

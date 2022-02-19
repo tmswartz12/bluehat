@@ -3,6 +3,9 @@ import { Container, Row, Col, Table, Form } from "react-bootstrap";
 import { PrimaryButton, SecondaryButton } from "../style/buttons";
 import { TopRow, RightCol } from "../style/system";
 import { Heading1, Body } from "../style/typography";
+import { fluidWidth } from "../style/window";
+
+import useWindowSize from "../util/useWindowSize";
 
 import TransactionsHeader from "./TransactionsHeader";
 import TransactionsTable from "./TransactionsTable";
@@ -15,8 +18,12 @@ const Transactions = () => {
     const term = queryParams.get("filter");
     setFilter(term);
   }, [window.location.search]);
+
+  const size = useWindowSize();
+
+  const makeContainerFluid = Boolean(size.width < fluidWidth);
   return (
-    <Container>
+    <Container fluid={makeContainerFluid}>
       <TopRow>
         <Col>
           <Heading1>Transactions</Heading1>

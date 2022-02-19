@@ -11,6 +11,7 @@ import { ComingSoon, MenuItemStyled } from "./Navigation.styled";
 import Cookies from "js-cookie";
 import { MdApps, MdOutlineSwapHoriz, MdPeople } from "react-icons/md";
 import useWindowSize from "./util/useWindowSize";
+import { collapseSideNav } from "./style/window";
 
 const Navigation = () => {
   const hasCookie = Boolean(Cookies.get("blueHatAuth"));
@@ -21,7 +22,7 @@ const Navigation = () => {
    */
   const size = useWindowSize();
 
-  const collapseNavigation = Boolean(size.width < 1010);
+  const collapseNavigation = Boolean(size.width < collapseSideNav);
 
   if (user && user.onboardingStatus === "complete") {
     return (
