@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Table, Form } from "react-bootstrap";
+import { Container, Row, Col, Table, Form, Card } from "react-bootstrap";
 import { PrimaryButton, SecondaryButton } from "../style/buttons";
 
 import {
   WhiteSiteRow,
-  Progress,
   BlueHatTable,
   BlueHatTableHeading,
   DetailsHeader,
   DetailsCell,
   BlueHatTableCell,
-  StageHeader,
-  StageCell,
   TableRow,
   TopRow,
-  RightCol
+  RightCol,
+  SecondaryNav,
+  SecondaryNavTab
 } from "../style/system";
 import { Heading1, Body } from "../style/typography";
-import {
-  CurrentBalance,
-  TransactionSmallBody,
-  TransactionLargeBody,
-  StageWrapper
-} from "./Transactions.styled";
 
 import {
   CardSmallBody
@@ -40,7 +33,22 @@ const Cards = () => {
           <PrimaryButton>Add Card</PrimaryButton>
         </RightCol>
       </TopRow>
+      <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
+        <Col>
+          <SecondaryNav>
+            <SecondaryNavTab
+              eventKey="home"
+              title="All Cards"
+            ></SecondaryNavTab>
+            <SecondaryNavTab
+              eventKey="1"
+              title="My Cards"
+            ></SecondaryNavTab>
+          </SecondaryNav>
+        </Col>
+      </Row>
       <WhiteSiteRow>
+
       <Col xs={12}>
           <Row>
             <Col>
@@ -51,7 +59,7 @@ const Cards = () => {
                 >
                   <Form.Label>
                     {" "}
-                    <TransactionSmallBody>Search</TransactionSmallBody>
+                    <CardSmallBody>Search</CardSmallBody>
                   </Form.Label>
                   <Form.Control
                     type="email"
@@ -62,7 +70,7 @@ const Cards = () => {
             </Col>
             <Col>
               <Form.Label>
-                <TransactionSmallBody>Status</TransactionSmallBody>
+                <CardSmallBody>Status</CardSmallBody>
               </Form.Label>
               <Form.Control as="select" aria-label="Default select example" className="show-tick">
                 {/* <option>Open this select menu</option> */}
@@ -73,7 +81,7 @@ const Cards = () => {
             </Col>
             <Col>
               <Form.Label>
-                <TransactionSmallBody>Option 3</TransactionSmallBody>
+                <CardSmallBody>Option 3</CardSmallBody>
               </Form.Label>{" "}
               <Form.Control as="select">
                 <option value="1">One</option>
