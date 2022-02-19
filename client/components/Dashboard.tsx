@@ -7,9 +7,14 @@ import {
   SecondaryButtonOutline,
   SuccessButton,
   SuccessButtonOutline,
+  DangerButton,
+  DangerButtonOutline,
+  InfoButton,
+  InfoButtonOutline,
+  LightButton,
 } from "../style/buttons";
 import { Heading1 } from "../style/typography";
-import { TopRow } from "../style/system";
+import { SecondaryNav, SecondaryNavTab, TopRow } from "../style/system";
 
 const Dashboard = () => {
   return (
@@ -27,6 +32,20 @@ const Dashboard = () => {
           <SecondaryButtonOutline>Secondary</SecondaryButtonOutline>
           <SuccessButton>Success</SuccessButton>
           <SuccessButtonOutline>Success</SuccessButtonOutline>
+          <DangerButton>Danger</DangerButton>
+          <DangerButtonOutline>Danger</DangerButtonOutline>
+          <InfoButton>Info</InfoButton>
+          <InfoButtonOutline>Info</InfoButtonOutline>
+          <LightButton>Light</LightButton>
+        </Col>
+      </Row>
+      <Row className="mt-3">
+        <Col>
+          <SecondaryNav>
+            <SecondaryNavTab eventKey="home" title="Tab 1"></SecondaryNavTab>
+            <SecondaryNavTab eventKey="1" title="Tab 2"></SecondaryNavTab>
+            <SecondaryNavTab eventKey="2" title="Tab 3"></SecondaryNavTab>
+          </SecondaryNav>
         </Col>
       </Row>
     </Container>

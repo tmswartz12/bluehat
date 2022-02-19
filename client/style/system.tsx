@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Col, Row, ProgressBar, Table } from "react-bootstrap";
+import { Col, Row, ProgressBar, Table, Nav, Tab, Tabs } from "react-bootstrap";
 import { b500, g100, g600, g700, white } from "./colors";
 
 export const TopRow = styled(Row)`
@@ -20,6 +20,7 @@ export const WhiteSiteRow = styled(SiteRow)`
   padding: 20px;
   margin-right: 10px;
   margin-left: 10px;
+  margin-top: 20px;
 `;
 
 export const RightCol = styled(Col)`
@@ -72,5 +73,25 @@ export const TableRow = styled.tr`
   :hover {
     background-color: ${g100};
     cursor: pointer;
+  }
+`;
+
+export const SecondaryNav = styled(Tabs)`
+  border-bottom: 1px solid #dee3e6;
+`;
+
+export const SecondaryNavTab = styled(Tab)`
+  border-left: 0px !important;
+  border-right: 0px !important;
+  background-color: transparent !important;
+  :focus {
+    border-left: 0px !important;
+    border-right: 0px !important;
+    background-color: transparent !important;
+  }
+  :active {
+    border-left: 0px !important;
+    border-right: 0px !important;
+    background-color: transparent !important;
   }
 `;

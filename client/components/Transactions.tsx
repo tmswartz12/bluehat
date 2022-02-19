@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Table, Form } from "react-bootstrap";
 import { PrimaryButton, SecondaryButton } from "../style/buttons";
-import { TopRow, RightCol } from "../style/system";
+import {
+  TopRow,
+  RightCol,
+  SecondaryNav,
+  SecondaryNavTab,
+  SiteRow,
+} from "../style/system";
 import { Heading1, Body } from "../style/typography";
 import { fluidWidth } from "../style/window";
 
@@ -40,6 +46,20 @@ const Transactions = () => {
           <PrimaryButton>Make Payment</PrimaryButton>
         </RightCol>
       </TopRow>
+      <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
+        <Col>
+          <SecondaryNav>
+            <SecondaryNavTab
+              eventKey="home"
+              title="All Credit"
+            ></SecondaryNavTab>
+            <SecondaryNavTab
+              eventKey="1"
+              title="Material Spend"
+            ></SecondaryNavTab>
+          </SecondaryNav>
+        </Col>
+      </Row>
       <TransactionsHeader />
       <TransactionsTable handleSelectTransaction={handleSelectTransaction} />
       <TransactionsModal
