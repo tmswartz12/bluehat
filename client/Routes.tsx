@@ -19,6 +19,7 @@ import Projects from "./components/Projects";
 import Company from "./components/Company";
 
 import history from "./history";
+import TopNav from "./TopNav";
 
 export default function Routes() {
   const user = useStoreState((state) => state.user.data);
@@ -48,6 +49,7 @@ export default function Routes() {
 
   return (
     <Router>
+      <TopNav />
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Navigation />
         <Switch>

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Table, Form } from "react-bootstrap";
+import { PrimaryButton, SecondaryButton } from "../style/buttons";
+import { TopRow, RightCol } from "../style/system";
+import { Heading1, Body } from "../style/typography";
+
+import TransactionsHeader from "./TransactionsHeader";
+import TransactionsTable from "./TransactionsTable";
 
 const Transactions = () => {
   const [filter, setFilter] = useState("");
@@ -11,9 +17,17 @@ const Transactions = () => {
   }, [window.location.search]);
   return (
     <Container>
-      <Row>
-        <Col>Transactions {filter}</Col>
-      </Row>
+      <TopRow>
+        <Col>
+          <Heading1>Transactions</Heading1>
+          {filter}
+        </Col>
+        <RightCol>
+          <PrimaryButton>Make Payment</PrimaryButton>
+        </RightCol>
+      </TopRow>
+      <TransactionsHeader />
+      <TransactionsTable />
     </Container>
   );
 };

@@ -10,6 +10,7 @@ const BlueHatButton = styled(Button)`
   font-weight: 600 !important;
   font-size: 16px;
   line-height: 20px;
+  height: 40px;
   outline: 0 !important;
   box-shadow: none !important;
 

@@ -8,10 +8,17 @@ import {
   SuccessButton,
   SuccessButtonOutline,
 } from "../style/buttons";
+import { Heading1 } from "../style/typography";
+import { TopRow } from "../style/system";
 
 const Dashboard = () => {
   return (
     <Container>
+      <TopRow>
+        <Col>
+          <Heading1 style={{ fontWeight: "bold" }}>Dashboard</Heading1>
+        </Col>
+      </TopRow>
       <Row>
         <Col>
           <PrimaryButton>Primary</PrimaryButton>
@@ -20,12 +27,6 @@ const Dashboard = () => {
           <SecondaryButtonOutline>Secondary</SecondaryButtonOutline>
           <SuccessButton>Success</SuccessButton>
           <SuccessButtonOutline>Success</SuccessButtonOutline>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <div>1</div>
-          <div>3</div>
         </Col>
       </Row>
     </Container>

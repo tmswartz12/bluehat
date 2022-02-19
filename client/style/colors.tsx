@@ -33,4 +33,4 @@ export const info = `#17A2B8`;
 /** Text */
 
 export const headingTextColor = `#193340`;
-export const bodyTextColor = `#4D5E66`;
+export const BodyColor = `#4D5E66`;
