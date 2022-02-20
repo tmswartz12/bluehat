@@ -50,32 +50,6 @@ const schema = yup.object({
  */
 
 const Onboarding = () => {
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      dateOfBirth: "",
-      idNumber: "",
-      idType: "ssn",
-      line1: "",
-      line2: "",
-      city: "",
-      state: "",
-      country: "US",
-      postalCode: "",
-    },
-    validationSchema: schema,
-    onSubmit: (values) => {
-      // register({
-      //   firstName: values.firstName,
-      // });
-      console.log(values);
-      //   formik.resetForm();
-    },
-  });
-
   const user = useStoreState((state) => state.user.data);
 
   const getNextQuestion = () => {

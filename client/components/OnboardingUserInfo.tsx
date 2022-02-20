@@ -1,4 +1,5 @@
 import React from "react";
+import Cleave from "cleave.js/react";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Formik, useFormikContext, useFormik } from "formik";
@@ -7,6 +8,7 @@ import {
   BlueHatFormInput,
   BlueHatFormInputFeedback,
   BlueHatForm,
+  PhoneNumber,
 } from "../style/form";
 import { useStoreState, useStoreActions } from "../store";
 
@@ -17,31 +19,29 @@ import { PrimaryButton } from "../style/buttons";
 const schema = yup.object({
   firstName: yup.string().required("Required"),
   lastName: yup.string().required("Required"),
+  phone: yup.string().required("Required"),
+  dateOfBirth: yup.string().required("Required"),
 });
 
 const UserInfo = () => {
+  const submitUserInfo = useStoreActions((actions) => actions.user.onboarding);
   const formik = useFormik({
     initialValues: {
-      firstName: "",
       firstName: "",
       lastName: "",
       phone: "",
       dateOfBirth: "",
-      idNumber: "",
-      idType: "ssn",
-      line1: "",
-      line2: "",
-      city: "",
-      state: "",
-      country: "US",
-      postalCode: "",
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      // register({
-      //   firstName: values.firstName,
-      // });
-      console.log(values);
+      const formattedPhone = values.phone.replace(/[^\d\+]/g, "");
+      submitUserInfo({
+        firstName: values.firstName,
+        lastName: values.lastName,
+        phone: formattedPhone,
+        dateOfBirth: values.dateOfBirth,
+      });
+      // console.log(values);
       //   formik.resetForm();
     },
   });
@@ -109,21 +109,27 @@ const UserInfo = () => {
         <Col xs={6}>
           <BlueHatForm noValidate onSubmit={formik.handleSubmit}>
             <Form.Label style={{ fontWeight: "600" }}>Phone Number</Form.Label>
-            <BlueHatFormInput
-              type="text"
-              name="firstName"
+            <PhoneNumber
+              // type="text"
+              name="phone"
               // style={{ width: "400px" }}
-              value={formik.values.firstName}
-              onBlur={formik.handleBlur}
+              // value={formik.values.phone}
+              // onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.firstName && !formik.errors.firstName}
-              isInvalid={
-                (formik.submitCount || formik.touched.firstName) &&
-                !!formik.errors.firstName
-              }
+              isValid={formik.touched.phone && !formik.errors.phone}
+              // isInvalid={
+              //   (formik.submitCount || formik.touched.phone) &&
+              //   !!formik.errors.phone
+              // }
+              options={{
+                phone: true,
+                phoneRegionCode: "us",
+                delimiter: "—",
+                prefix: "+1",
+              }}
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.firstName}
+              {formik.errors.phone}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
@@ -131,20 +137,20 @@ const UserInfo = () => {
           <BlueHatForm noValidate onSubmit={formik.handleSubmit}>
             <Form.Label style={{ fontWeight: "600" }}>Date Of Birth</Form.Label>
             <BlueHatFormInput
-              type="text"
-              name="firstName"
+              type="date"
+              name="dateOfBirth"
               // style={{ width: "400px" }}
-              value={formik.values.firstName}
+              value={formik.values.dateOfBirth}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.firstName && !formik.errors.firstName}
+              isValid={formik.touched.dateOfBirth && !formik.errors.dateOfBirth}
               isInvalid={
-                (formik.submitCount || formik.touched.firstName) &&
-                !!formik.errors.firstName
+                (formik.submitCount || formik.touched.dateOfBirth) &&
+                !!formik.errors.dateOfBirth
               }
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.firstName}
+              {formik.errors.dateOfBirth}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
@@ -158,7 +164,6 @@ const UserInfo = () => {
             onClick={() => {
               formik.submitForm(formik.values);
             }}
-            variant="success"
           >
             Continue
           </PrimaryButton>

@@ -9,6 +9,15 @@ export interface UserModel {
   setUser: Action<UserModel, User>;
   getUser: Thunk<UserModel>;
   register: Thunk<UserModel, { email: string }>;
+  onboarding: Thunk<
+    UserModel,
+    {
+      firstName?: string;
+      lastName?: string;
+      phone?: string;
+      dateOfBirth?: string;
+    }
+  >;
 }
 
 const initialUser: User = {
@@ -43,6 +52,15 @@ const user: UserModel = {
       setAuthCookie(user._id, authToken);
       actions.setUser(user);
       history.push("/onboarding");
+    } catch (err) {
+      console.log("err", err);
+    }
+  }),
+  onboarding: thunk(async (actions, payload) => {
+    try {
+      const { data } = await apiCaller("api/user/onboarding", "post", payload);
+      const user = data.user;
+      actions.setUser(user);
     } catch (err) {
       console.log("err", err);
     }
