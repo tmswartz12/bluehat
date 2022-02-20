@@ -34,7 +34,6 @@ router.post("/signup", async (req, res, next) => {
 router.post("/onboarding", authRequired, async (req, res, next) => {
   try {
     const user = await UserService.onboarding(req.user, req.body);
-    const kyc = await KycService.submit(user);
     return res.json({ user });
   } catch (error) {
     console.log("error", error);
