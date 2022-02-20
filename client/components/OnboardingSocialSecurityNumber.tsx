@@ -81,7 +81,7 @@ const UserSocialSecurityNumber = () => {
               }}
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.lastName}
+              {formik.errors.idNumber}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>

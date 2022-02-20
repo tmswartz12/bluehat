@@ -10,9 +10,12 @@ module.exports = router;
 
 router.post("/onboarding", authRequired, async (req, res, next) => {
   try {
-    const business = await BusinessService.onboarding(req.user, req.body);
+    const { business, user } = await BusinessService.onboarding(
+      req.user,
+      req.body
+    );
     const kyb = await KybService.submit(req.user.solidPersonId, business);
-    return res.json({ business, kyb });
+    return res.json({ business, kyb, user });
   } catch (error) {
     console.log("error", error);
     return res.status(500).json({ error });

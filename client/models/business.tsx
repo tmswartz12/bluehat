@@ -1,37 +1,33 @@
-import { Action, thunk, action, Thunk, ActionOn, actionOn } from "easy-peasy";
+import {
+  Action,
+  thunk,
+  action,
+  Thunk,
+  ActionOn,
+  actionOn,
+  thunkOn,
+  ThunkOn,
+} from "easy-peasy";
 import { User } from "../types/user";
 import { apiCaller } from "../util/apiCaller";
 import { setAuthCookie } from "../util/cookies";
 import history from "../history";
+import { Business } from "../types/business";
+
+import { useStoreActions } from "../store";
+import { UserModel } from "./user";
 
 export interface BusinessModel {
-  data: User;
-  setBusiness: Action<BusinessModel, User>;
-  getBusiness: Thunk<BusinessModel>;
-  onboarding: Thunk<
-    BusinessModel,
-    {
-      firstName?: string;
-      lastName?: string;
-      phone?: string;
-      dateOfBirth?: string;
-      address?: {
-        line1?: string;
-        line2?: string;
-        city?: string;
-        state?: string;
-        country?: string;
-        postalCode?: string;
-      };
-      idNumber?: string;
-      idType?: string;
-    }
-  >;
+  data: Business;
+  setBusiness: Action<BusinessModel, Business>;
+  getBusiness: Thunk<BusinessModel, Business>;
+  onboarding: Thunk<BusinessModel, { user: User; business: Business }>;
 }
 
 const initialBusiness: Business = {
   _id: "",
   legalName: "",
+  address: {},
 };
 
 const business: BusinessModel = {
@@ -48,6 +44,9 @@ const business: BusinessModel = {
     } catch (err) {
       console.log("err", err);
     }
+  }),
+  setBusiness: action((state, payload) => {
+    state.data = payload;
   }),
 };
 

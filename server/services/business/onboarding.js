@@ -3,6 +3,7 @@ const SolidService = require("../solid");
 const KybService = require("../kyb");
 
 const onboarding = async (user, request) => {
+  console.log("in the request", request);
   const {
     legalName,
     dba,
@@ -16,6 +17,7 @@ const onboarding = async (user, request) => {
     ownership,
   } = request;
   try {
+    address.addressType = "mailing";
     const foundUser = await User.findOne({ _id: user });
     foundUser.title = title;
     foundUser.ownership = ownership;
@@ -41,6 +43,7 @@ const onboarding = async (user, request) => {
     createdBusiness.solidBusinessId = solidBusiness.id;
 
     foundUser.business = createdBusiness._id;
+    foundUser.onboardingStatus = "complete";
     const savedUser = await foundUser.save();
 
     await KybService.create(createdBusiness, solidBusiness);
@@ -50,7 +53,8 @@ const onboarding = async (user, request) => {
      */
     // await SolidService.BUSINESS.createMember(savedUser, createdBusiness);
 
-    return await createdBusiness.save();
+    const savedBusiness = await createdBusiness.save();
+    return { business: savedBusiness, user: savedUser };
   } catch (error) {
     console.log("error", error);
     throw error;

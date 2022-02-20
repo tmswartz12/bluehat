@@ -1,10 +1,12 @@
 export type Business = {
-  _id: string;
+  _id?: string;
   legalName?: string;
+  dba?: string;
   entityType?: string;
   idType?: string;
-  idNumber?: boolean;
+  idNumber?: string;
   phone?: string;
+  industry?: string;
   blueHatStatus?: string;
   formationDate?: string;
   address: {
@@ -18,4 +20,6 @@ export type Business = {
   };
   solidBusinessId?: string;
   dateAdded?: string;
+  title?: string;
+  ownership?: string;
 };

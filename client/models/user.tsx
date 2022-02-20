@@ -3,6 +3,8 @@ import { User } from "../types/user";
 import { apiCaller } from "../util/apiCaller";
 import { setAuthCookie } from "../util/cookies";
 import history from "../history";
+import { BusinessModel } from "./business";
+import { StoreModel } from "./index";
 
 export interface UserModel {
   data: User;
@@ -28,6 +30,7 @@ export interface UserModel {
       idType?: string;
     }
   >;
+  updateUser: ActionOn<BusinessModel, StoreModel>;
 }
 
 const initialUser: User = {
@@ -36,6 +39,7 @@ const initialUser: User = {
   lastName: "",
   email: "",
   isAdmin: false,
+  address: {},
   onboardingStatus: "complete",
 };
 
@@ -75,6 +79,12 @@ const user: UserModel = {
       console.log("err", err);
     }
   }),
+  updateUser: actionOn(
+    (actions, storeActions) => storeActions.business.onboarding,
+    (state, target) => {
+      state.data = target.payload.user;
+    }
+  ),
 };
 
 export default user;
