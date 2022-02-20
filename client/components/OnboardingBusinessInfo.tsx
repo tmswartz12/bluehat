@@ -180,9 +180,6 @@ const BusinessInfo = () => {
           </BlueHatForm>
         </Col>
       </Row>
-      <Row className="mt-4">
-        <hr />
-      </Row>
       <Row className="mt-3">
         <Col xs={12}>
           <BlueHatForm noValidate onSubmit={formik.handleSubmit}>
