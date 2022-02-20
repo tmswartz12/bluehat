@@ -16,6 +16,16 @@ export interface UserModel {
       lastName?: string;
       phone?: string;
       dateOfBirth?: string;
+      address?: {
+        line1?: string;
+        line2?: string;
+        city?: string;
+        state?: string;
+        country?: string;
+        postalCode?: string;
+      };
+      idNumber?: string;
+      idType?: string;
     }
   >;
 }

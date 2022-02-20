@@ -7,6 +7,7 @@ import {
   BlueHatFormInput,
   BlueHatFormInputFeedback,
   BlueHatForm,
+  BlueHatCleave,
 } from "../style/form";
 import { useStoreState, useStoreActions } from "../store";
 
@@ -16,33 +17,24 @@ import { PrimaryButton } from "../style/buttons";
 import { CenteredCol } from "./Register.styled";
 
 const schema = yup.object({
-  firstName: yup.string().required("Required"),
-  lastName: yup.string().required("Required"),
+  idNumber: yup.string().required("Required"),
 });
 
 const UserSocialSecurityNumber = () => {
+  const submitIdNumber = useStoreActions((actions) => actions.user.onboarding);
+
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      dateOfBirth: "",
       idNumber: "",
-      idType: "ssn",
-      line1: "",
-      line2: "",
-      city: "",
-      state: "",
-      country: "US",
-      postalCode: "",
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      // register({
-      //   firstName: values.firstName,
-      // });
-      console.log(values);
+      const formattedId = values.idNumber.replace(/[^\d\+]/g, "");
+
+      submitIdNumber({
+        idNumber: formattedId,
+        idType: "ssn",
+      });
       //   formik.resetForm();
     },
   });
@@ -67,18 +59,22 @@ const UserSocialSecurityNumber = () => {
             <Form.Label style={{ fontWeight: "600" }}>
               Social Secuirty Number
             </Form.Label>
-            <BlueHatFormInput
-              type="text"
-              name="lastName"
-              // style={{ width: "100%" }}
-              value={formik.values.lastName}
-              onBlur={formik.handleBlur}
+            <BlueHatCleave
+              name="idNumber"
+              // style={{ width: "400px" }}
+              // value={formik.values.phone}
+              // onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.lastName && !formik.errors.lastName}
-              isInvalid={
-                (formik.submitCount || formik.touched.lastName) &&
-                !!formik.errors.lastName
-              }
+              isValid={formik.touched.idNumber && !formik.errors.idNumber}
+              // isInvalid={
+              //   (formik.submitCount || formik.touched.phone) &&
+              //   !!formik.errors.phone
+              // }
+              options={{
+                blocks: [3, 2, 4],
+                delimiter: "—",
+                numericOnly: true,
+              }}
             />
             <BlueHatFormInputFeedback type="invalid">
               {formik.errors.lastName}

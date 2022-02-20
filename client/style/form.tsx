@@ -9,7 +9,7 @@ export const BlueHatFormInput = styled(Form.Control)``;
 
 export const BlueHatFormInputFeedback = styled(Form.Control.Feedback)``;
 
-export const PhoneNumber = styled(Cleave)`
+export const BlueHatCleave = styled(Cleave)`
     display: block;
     width: 100%;
     padding: 0.375rem 0.75rem;
@@ -26,6 +26,4 @@ export const PhoneNumber = styled(Cleave)`
     border-radius: 0.25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
-
 `;

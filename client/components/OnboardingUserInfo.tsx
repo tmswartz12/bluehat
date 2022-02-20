@@ -1,5 +1,4 @@
 import React from "react";
-import Cleave from "cleave.js/react";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Formik, useFormikContext, useFormik } from "formik";
@@ -8,7 +7,7 @@ import {
   BlueHatFormInput,
   BlueHatFormInputFeedback,
   BlueHatForm,
-  PhoneNumber,
+  BlueHatCleave,
 } from "../style/form";
 import { useStoreState, useStoreActions } from "../store";
 
@@ -109,7 +108,7 @@ const UserInfo = () => {
         <Col xs={6}>
           <BlueHatForm noValidate onSubmit={formik.handleSubmit}>
             <Form.Label style={{ fontWeight: "600" }}>Phone Number</Form.Label>
-            <PhoneNumber
+            <BlueHatCleave
               // type="text"
               name="phone"
               // style={{ width: "400px" }}

@@ -13,22 +13,23 @@ import { useStoreState, useStoreActions } from "../store";
 import { Heading1, SmallBody } from "../style/typography";
 
 import { PrimaryButton } from "../style/buttons";
+import { US_STATES } from "../util/us-states";
 
 const schema = yup.object({
-  firstName: yup.string().required("Required"),
-  lastName: yup.string().required("Required"),
+  line1: yup.string().required("Required"),
+  line2: yup.string(),
+  city: yup.string().required("Required"),
+  state: yup.string().required("Required"),
+  postalCode: yup.string().required("Required"),
 });
 
 const UserAddress = () => {
+  const submitUserAddress = useStoreActions(
+    (actions) => actions.user.onboarding
+  );
+
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      dateOfBirth: "",
-      idNumber: "",
-      idType: "ssn",
       line1: "",
       line2: "",
       city: "",
@@ -38,9 +39,16 @@ const UserAddress = () => {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      // register({
-      //   firstName: values.firstName,
-      // });
+      submitUserAddress({
+        address: {
+          line1: values.line1,
+          line2: values.line2,
+          city: values.city,
+          state: values.state,
+          country: "US",
+          postalCode: values.postalCode,
+        },
+      });
       console.log(values);
       //   formik.resetForm();
     },
@@ -66,19 +74,19 @@ const UserAddress = () => {
             </Form.Label>
             <BlueHatFormInput
               type="text"
-              name="lastName"
+              name="line1"
               // style={{ width: "100%" }}
-              value={formik.values.lastName}
+              value={formik.values.line1}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.lastName && !formik.errors.lastName}
+              isValid={formik.touched.line1 && !formik.errors.line1}
               isInvalid={
-                (formik.submitCount || formik.touched.lastName) &&
-                !!formik.errors.lastName
+                (formik.submitCount || formik.touched.line1) &&
+                !!formik.errors.line1
               }
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.lastName}
+              {formik.errors.line1}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
@@ -89,19 +97,19 @@ const UserAddress = () => {
             <Form.Label style={{ fontWeight: "600" }}>Line 2</Form.Label>
             <BlueHatFormInput
               type="text"
-              name="lastName"
+              name="line2"
               // style={{ width: "100%" }}
-              value={formik.values.lastName}
+              value={formik.values.line2}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.lastName && !formik.errors.lastName}
+              isValid={formik.touched.line2 && !formik.errors.line2}
               isInvalid={
-                (formik.submitCount || formik.touched.lastName) &&
-                !!formik.errors.lastName
+                (formik.submitCount || formik.touched.line2) &&
+                !!formik.errors.line2
               }
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.lastName}
+              {formik.errors.line2}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
@@ -112,40 +120,48 @@ const UserAddress = () => {
             <Form.Label style={{ fontWeight: "600" }}>City</Form.Label>
             <BlueHatFormInput
               type="text"
-              name="lastName"
+              name="city"
               // style={{ width: "100%" }}
-              value={formik.values.lastName}
+              value={formik.values.city}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.lastName && !formik.errors.lastName}
+              isValid={formik.touched.city && !formik.errors.city}
               isInvalid={
-                (formik.submitCount || formik.touched.lastName) &&
-                !!formik.errors.lastName
+                (formik.submitCount || formik.touched.city) &&
+                !!formik.errors.city
               }
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.lastName}
+              {formik.errors.city}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
         <Col xs={4}>
           <BlueHatForm noValidate onSubmit={formik.handleSubmit}>
             <Form.Label style={{ fontWeight: "600" }}>State</Form.Label>
-            <BlueHatFormInput
-              type="text"
-              name="lastName"
-              // style={{ width: "100%" }}
-              value={formik.values.lastName}
+            <Form.Control
+              name="state"
+              as="select"
+              value={formik.values.state}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.lastName && !formik.errors.lastName}
+              isValid={formik.touched.state && !formik.errors.state}
               isInvalid={
-                (formik.submitCount || formik.touched.lastName) &&
-                !!formik.errors.lastName
+                (formik.submitCount || formik.touched.state) &&
+                !!formik.errors.state
               }
-            />
+            >
+              <option>Select State</option>;
+              {US_STATES.map((state) => {
+                return (
+                  <option value={state} key={state}>
+                    {state}
+                  </option>
+                );
+              })}
+            </Form.Control>
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.lastName}
+              {formik.errors.state}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
@@ -154,19 +170,18 @@ const UserAddress = () => {
             <Form.Label style={{ fontWeight: "600" }}>Zipcode</Form.Label>
             <BlueHatFormInput
               type="text"
-              name="lastName"
-              // style={{ width: "100%" }}
-              value={formik.values.lastName}
+              name="postalCode"
+              value={formik.values.postalCode}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              isValid={formik.touched.lastName && !formik.errors.lastName}
+              isValid={formik.touched.postalCode && !formik.errors.postalCode}
               isInvalid={
-                (formik.submitCount || formik.touched.lastName) &&
-                !!formik.errors.lastName
+                (formik.submitCount || formik.touched.postalCode) &&
+                !!formik.errors.postalCode
               }
             />
             <BlueHatFormInputFeedback type="invalid">
-              {formik.errors.lastName}
+              {formik.errors.postalCode}
             </BlueHatFormInputFeedback>
           </BlueHatForm>
         </Col>
