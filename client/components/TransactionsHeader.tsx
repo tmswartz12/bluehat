@@ -19,7 +19,7 @@ import { MdDomain } from "react-icons/md";
 const TransactionsHeader = () => {
   return (
     <WhiteSiteRow>
-      <Col xs={12} md={5}>
+      <Col xs={12} md={12}>
         <Row>
           <Col>
             <div>
@@ -71,8 +71,8 @@ const TransactionsHeader = () => {
           </Col>
         </Row>
       </Col>
-      <Col sm={0} md={1}></Col>
-      <Col style={{ alignItems: "flex-start" }}>
+      {/* <Col sm={0} md={1}></Col> */}
+      {/* <Col style={{ alignItems: "flex-start" }}>
         <Row>
           <Col xs={6} sm={4}>
             <div>
@@ -117,7 +117,7 @@ const TransactionsHeader = () => {
             </div>
           </Col>
         </Row>
-      </Col>
+      </Col> */}
     </WhiteSiteRow>
   );
 };

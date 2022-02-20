@@ -15,17 +15,8 @@ import useWindowSize from "../util/useWindowSize";
 
 import TransactionsHeader from "./TransactionsHeader";
 import TransactionsTable from "./TransactionsTable";
-import TransactionsModal from "./TransactionsModal";
 
 const Transactions = () => {
-  const [showModal, toggleModal] = useState(false);
-  const [transaction, setTransaction] = useState(null);
-
-  const handleSelectTransaction = (selectedTransaction) => {
-    setTransaction(selectedTransaction);
-    toggleModal(true);
-  };
-
   const [filter, setFilter] = useState("");
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -61,12 +52,7 @@ const Transactions = () => {
         </Col>
       </Row>
       <TransactionsHeader />
-      <TransactionsTable handleSelectTransaction={handleSelectTransaction} />
-      <TransactionsModal
-        show={showModal}
-        hide={() => toggleModal(false)}
-        transaction={transaction}
-      />
+      <TransactionsTable />
     </Container>
   );
 };

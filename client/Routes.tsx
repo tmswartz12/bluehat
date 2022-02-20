@@ -20,6 +20,7 @@ import Company from "./components/Company";
 
 import history from "./history";
 import TopNav from "./TopNav";
+import SelectedProject from "./components/SelectedProject";
 
 export default function Routes() {
   const user = useStoreState((state) => state.user.data);
@@ -73,7 +74,12 @@ export default function Routes() {
           <Route exact path="/" component={() => <Dashboard />} />,
           <Route exact path="/cards" component={() => <Cards />} />,
           <Route exact path="/company" component={() => <Company />} />,
-          <Route exact path="/projects" component={() => <Projects />} />
+          <Route exact path="/projects" component={() => <Projects />} />,
+          <Route
+            exact
+            path="/project/:id"
+            component={() => <SelectedProject />}
+          />
           ,
           <Route
             exact

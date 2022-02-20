@@ -35,8 +35,20 @@ import {
   MdDomain
 } from "react-icons/md";
 
-const TransactionsTable = ({handleSelectTransaction}) => {
+import TransactionsModal from "./TransactionsModal";
+
+
+const TransactionsTable = () => {
+
+  const [showModal, toggleModal] = useState(false);
+  const [transaction, setTransaction] = useState(null);
+
+  const handleSelectTransaction = (selectedTransaction: any) => {
+    setTransaction(selectedTransaction);
+    toggleModal(true);
+  };
     return(
+      <>
         <WhiteSiteRow>
         <Col xs={12}>
           <Row>
@@ -163,7 +175,13 @@ const TransactionsTable = ({handleSelectTransaction}) => {
           </Row>
         </Col>
       </WhiteSiteRow>
-    )
+            <TransactionsModal
+            show={showModal}
+            hide={() => toggleModal(false)}
+            transaction={transaction}
+          />
+          </>
+    );
 }
 
 export default TransactionsTable
