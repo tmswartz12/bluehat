@@ -3,6 +3,7 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Formik, useFormikContext, useFormik } from "formik";
 import * as yup from "yup"; // for everything
+import moment from "moment";
 import {
   BlueHatFormInput,
   BlueHatFormInputFeedback,
@@ -14,12 +15,17 @@ import { useStoreState, useStoreActions } from "../store";
 import { Heading1, SmallBody } from "../style/typography";
 
 import { PrimaryButton } from "../style/buttons";
+import { OnboardingProgress } from "./Onboarding.styled";
 
 const schema = yup.object({
   firstName: yup.string().required("Required"),
   lastName: yup.string().required("Required"),
   phone: yup.string().required("Required"),
-  dateOfBirth: yup.string().required("Required"),
+  dateOfBirth: yup
+    .string()
+    .test("Date Of Birth", "Must be older than 18 years old", (value) => {
+      return moment().diff(moment(value), "years") >= 18;
+    }),
 });
 
 const UserInfo = () => {
@@ -46,6 +52,9 @@ const UserInfo = () => {
   });
   return (
     <>
+      <Row>
+        <OnboardingProgress now={25} animated />
+      </Row>
       <Row>
         <Col style={{ flexDirection: "column" }}>
           <div>

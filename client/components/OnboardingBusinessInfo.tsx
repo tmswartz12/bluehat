@@ -13,6 +13,8 @@ import { useStoreState, useStoreActions } from "../store";
 import { Heading1, SmallBody } from "../style/typography";
 
 import { PrimaryButton } from "../style/buttons";
+import { Progress } from "../style/system";
+import { OnboardingProgress } from "./Onboarding.styled";
 
 const schema = yup.object({
   firstName: yup.string().required("Required"),
@@ -47,6 +49,9 @@ const BusinessInfo = () => {
   });
   return (
     <>
+      <Row>
+        <OnboardingProgress now={90} animated />
+      </Row>
       <Row>
         <Col style={{ flexDirection: "column" }}>
           <div>

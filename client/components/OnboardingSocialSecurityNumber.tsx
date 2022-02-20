@@ -15,6 +15,7 @@ import { Heading1, SmallBody } from "../style/typography";
 
 import { PrimaryButton } from "../style/buttons";
 import { CenteredCol } from "./Register.styled";
+import { OnboardingProgress } from "./Onboarding.styled";
 
 const schema = yup.object({
   idNumber: yup.string().required("Required"),
@@ -40,6 +41,9 @@ const UserSocialSecurityNumber = () => {
   });
   return (
     <>
+      <Row>
+        <OnboardingProgress now={80} animated />
+      </Row>
       <Row>
         <Col style={{ flexDirection: "column" }}>
           <div>
