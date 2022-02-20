@@ -4,6 +4,8 @@ const crypto = require("crypto");
 
 const ONBOARDING_STATUS = {
   userInfo: "userInfo",
+  userAddress: "userAddress",
+  socialSecurityNumber: "socialSecurityNumber",
   businessInfo: "businessInfo",
   complete: "complete",
 };

@@ -9,6 +9,14 @@ import {
 import { Formik, useFormikContext, useFormik } from "formik";
 import * as yup from "yup"; // for everything
 
+import { Heading1, SmallBody } from "../style/typography";
+import { PrimaryButton } from "../style/buttons";
+import {
+  BlueHatFormInput,
+  BlueHatForm,
+  BlueHatFormInputFeedback,
+} from "../style/form";
+
 const schema = yup.object({
   email: yup.string().required("Required"),
 });
@@ -32,7 +40,7 @@ const Register = () => {
   return (
     <Container fluid>
       <Row>
-        <RegistrationPanelLeft xs={6}>
+        <RegistrationPanelLeft sm={6}>
           <img
             src="https://i.imgur.com/GOBosyk.png"
             width={"auto"}
@@ -40,25 +48,26 @@ const Register = () => {
           />
           <p className="mt-3">The Contractor's Credit Card </p>
         </RegistrationPanelLeft>
-        <RegistrationPanelRight xs={6}>
-          <Row style={{ paddingLeft: 125, paddingRight: 125 }}>
+        <RegistrationPanelRight xs={12} sm={6}>
+          <Row>
             <Col style={{ flexDirection: "column" }}>
               <div>
-                <h1>Welcome to BlueHat</h1>
+                <Heading1>Welcome to BlueHat</Heading1>
               </div>
               <div>
-                <p>Enter your email to get started</p>
+                <SmallBody>
+                  Register for a BlueHat card and get approved instantly
+                </SmallBody>
               </div>
             </Col>
           </Row>
-          <Row className="mt-5" style={{ paddingLeft: 125, paddingRight: 125 }}>
+          <Row className="mt-4">
             <Col xs={12}>
-              <Form noValidate onSubmit={formik.handleSubmit}>
-                <Form.Label style={{ fontWeight: "600" }}>Email</Form.Label>
-                <Form.Control
+              <BlueHatForm noValidate onSubmit={formik.handleSubmit}>
+                <BlueHatFormInput
                   type="text"
                   name="email"
-                  // style={{ width: "400px" }}
+                  placeholder="Enter your email..."
                   value={formik.values.email}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -68,28 +77,27 @@ const Register = () => {
                     !!formik.errors.email
                   }
                 />
-                <Form.Control.Feedback type="invalid">
+                <BlueHatFormInputFeedback type="invalid">
                   {formik.errors.email}
-                </Form.Control.Feedback>
-              </Form>
+                </BlueHatFormInputFeedback>
+              </BlueHatForm>
             </Col>
           </Row>
-          <Row style={{ paddingLeft: 125, paddingRight: 125 }}>
+          <Row>
             <Col xs={12}>
-              <Button
+              <PrimaryButton
                 block
                 className="mt-3"
-                // style={{ width: 400 }}
                 onClick={() => {
                   formik.submitForm(formik.values);
                 }}
                 variant="success"
               >
                 Get Started
-              </Button>
+              </PrimaryButton>
             </Col>
           </Row>
-          <Row className="mt-3" style={{ paddingLeft: 125, paddingRight: 125 }}>
+          <Row className="mt-3">
             <Col xs={12}>
               <div>
                 <p> Forgot your password?</p>

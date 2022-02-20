@@ -50,7 +50,7 @@ export default function Routes() {
 
   return (
     <Router>
-      <TopNav />
+      {!showOnboarding() && <TopNav />}
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Navigation />
         <Switch>
@@ -77,7 +77,7 @@ export default function Routes() {
           <Route exact path="/projects" component={() => <Projects />} />,
           <Route
             exact
-            path="/project/:id"
+            path="/projects/:id"
             component={() => <SelectedProject />}
           />
           ,

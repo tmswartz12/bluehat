@@ -26,9 +26,8 @@ const Transactions = () => {
   }, [window.location.search]);
 
   const size = useWindowSize();
-  const makeContainerFluid = Boolean(size.width < fluidWidth);
   return (
-    <Container fluid={makeContainerFluid}>
+    <Container>
       <TopRow>
         <Col>
           <Heading1>Transactions</Heading1>

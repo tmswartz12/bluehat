@@ -1,6 +1,9 @@
 {
   "extends": ["tslint-immutable"],
   "rules": {
+    "indent": {
+      "options": ["spaces", 4]
+    },
     "no-var-keyword": true,
     "no-parameter-reassignment": true,
     "typedef": false,
@@ -59,7 +62,6 @@
     "switch-default": true,
     "triple-equals": [true, "allow-undefined-check", "allow-null-check"],
     "eofline": false,
-    "indent": [true, "tabs"],
     "max-line-length": [true, 250],
     "no-require-imports": false,
     "no-trailing-whitespace": true,

@@ -23,10 +23,10 @@ import { CompanySmallBody } from "./Company.styled";
 
 const Company = () => {
   return (
-    <Container>
+     <Container>
       <TopRow>
         <Col>
-          <Heading1>Company</Heading1>
+           <Heading1> Company</Heading1>
         </Col>
         <RightCol>
           <PrimaryButton>Add Employee</PrimaryButton>

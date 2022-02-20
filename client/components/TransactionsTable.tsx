@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Table, Form } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Table, Form } from 'react-bootstrap';
 import {
-
   WhiteSiteRow,
   Progress,
   BlueHatTable,
@@ -11,35 +10,32 @@ import {
   BlueHatTableCell,
   StageHeader,
   StageCell,
-  TableRow
-} from "../style/system";
-import { Heading1, Body } from "../style/typography";
+  TableRow,
+} from '../style/system';
+import { Heading1, Body } from '../style/typography';
 import {
-  CurrentBalance,
   TransactionSmallBody,
-  TransactionLargeBody,
-  StageWrapper
-} from "./Transactions.styled";
+  StageWrapper,
+} from './Transactions.styled';
 
 import {
   FaClipboardCheck,
   FaReceipt,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 import {
-  GrPowerCycle
-} from "react-icons/gr";
+  GrPowerCycle,
+} from 'react-icons/gr';
 import {
-  BiListPlus
-} from "react-icons/bi";
+  BiListPlus,
+} from 'react-icons/bi';
 import {
-  MdDomain
-} from "react-icons/md";
+  MdDomain,
+} from 'react-icons/md';
 
-import TransactionsModal from "./TransactionsModal";
+import TransactionsModal from './TransactionsModal';
 
 
 const TransactionsTable = () => {
-
   const [showModal, toggleModal] = useState(false);
   const [transaction, setTransaction] = useState(null);
 
@@ -47,9 +43,9 @@ const TransactionsTable = () => {
     setTransaction(selectedTransaction);
     toggleModal(true);
   };
-    return(
-      <>
-        <WhiteSiteRow>
+  return (
+    <React.Fragment>
+      <WhiteSiteRow>
         <Col xs={12}>
           <Row>
             <Col>
@@ -121,7 +117,7 @@ const TransactionsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow onClick={() => handleSelectTransaction({name: 'tyler'})}>
+                  <TableRow onClick={() => handleSelectTransaction({ name: 'tyler' })}>
                     <BlueHatTableCell></BlueHatTableCell>
                     <DetailsCell>
                       <div>F.W. Webb Plumbing Supply</div>
@@ -134,16 +130,16 @@ const TransactionsTable = () => {
                     <BlueHatTableCell>Huntington Hospital</BlueHatTableCell>
                     <StageCell>
                       <StageWrapper>
-                        <FaReceipt/>
+                        <FaReceipt />
                       </StageWrapper>
                       <StageWrapper>
-                        <MdDomain/>
+                        <MdDomain />
                       </StageWrapper>
                       <StageWrapper>
-                        <BiListPlus/>
+                        <BiListPlus />
                       </StageWrapper>
                       <StageWrapper>
-                        <FaClipboardCheck/>
+                        <FaClipboardCheck />
                       </StageWrapper>
 
                     </StageCell>
@@ -155,7 +151,7 @@ const TransactionsTable = () => {
                   <TableRow>
                     <BlueHatTableCell>
                       <div>
-                      <GrPowerCycle/>
+                      <GrPowerCycle />
 
                       </div>
                       </BlueHatTableCell>{" "}
@@ -175,13 +171,13 @@ const TransactionsTable = () => {
           </Row>
         </Col>
       </WhiteSiteRow>
-            <TransactionsModal
-            show={showModal}
-            hide={() => toggleModal(false)}
-            transaction={transaction}
-          />
-          </>
-    );
-}
+      <TransactionsModal
+        show={showModal}
+        hide={() => toggleModal(false)}
+        transaction={transaction}
+      />
+     </React.Fragment>);
+};
 
 export default TransactionsTable
+;

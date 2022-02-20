@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Table, Form, Card } from "react-bootstrap";
-import { PrimaryButton, SecondaryButton } from "../style/buttons";
+import React from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import history from '../history';
+import { PrimaryButton } from '../style/buttons';
 
 import {
   WhiteSiteRow,
@@ -13,13 +14,11 @@ import {
   TopRow,
   RightCol,
   SecondaryNav,
-  SecondaryNavTab
-} from "../style/system";
-import { Heading1, Body } from "../style/typography";
+  SecondaryNavTab,
+} from '../style/system';
+import { Heading1 } from '../style/typography';
 
-
-import { ProjectSmallBody } from "./Projects.styled";
-
+import { ProjectSmallBody } from './Projects.styled';
 
 const Projects = () => {
   return (
@@ -47,7 +46,6 @@ const Projects = () => {
         </Col>
       </Row>
       <WhiteSiteRow>
-
       <Col xs={12}>
           <Row>
             <Col>
@@ -57,7 +55,7 @@ const Projects = () => {
                   controlId="exampleForm.ControlInput1"
                 >
                   <Form.Label>
-                    {" "}
+                    {' '}
                     <ProjectSmallBody>Search</ProjectSmallBody>
                   </Form.Label>
                   <Form.Control
@@ -83,7 +81,7 @@ const Projects = () => {
             <Col>
               <Form.Label>
                 <ProjectSmallBody>Role</ProjectSmallBody>
-              </Form.Label>{" "}
+              </Form.Label>{' '}
               <Form.Control as="select">
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -106,7 +104,7 @@ const Projects = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow >
+                  <TableRow onClick={() => history.push('/projects/123')}>
                     <DetailsCell>
                       <div>Hunting Hospital</div>
                       <div>
