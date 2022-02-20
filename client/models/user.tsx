@@ -1,4 +1,12 @@
-import { Action, thunk, action, Thunk, ActionOn, actionOn } from "easy-peasy";
+import {
+  Action,
+  thunk,
+  action,
+  Thunk,
+  ActionOn,
+  actionOn,
+  thunkOn,
+} from "easy-peasy";
 import { User } from "../types/user";
 import { apiCaller } from "../util/apiCaller";
 import { setAuthCookie } from "../util/cookies";
@@ -30,7 +38,7 @@ export interface UserModel {
       idType?: string;
     }
   >;
-  updateUser: ActionOn<BusinessModel, StoreModel>;
+  updateUser: ActionOn<UserModel, StoreModel>;
 }
 
 const initialUser: User = {
@@ -40,7 +48,7 @@ const initialUser: User = {
   email: "",
   isAdmin: false,
   address: {},
-  onboardingStatus: "complete",
+  onboardingStatus: "",
 };
 
 const user: UserModel = {
@@ -80,9 +88,9 @@ const user: UserModel = {
     }
   }),
   updateUser: actionOn(
-    (actions, storeActions) => storeActions.business.onboarding,
+    (actions, storeActions) => storeActions.business.setUser,
     (state, target) => {
-      state.data = target.payload.user;
+      state.data = target.payload;
     }
   ),
 };

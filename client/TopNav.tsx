@@ -6,7 +6,6 @@ import { LoggedOutNav } from "./TopNav.styled";
 
 const TopNav = () => {
   const size = useWindowSize();
-  console.log("size", size);
   const user = useStoreState((state) => state.user.data);
   const showAllNavOptions = size.width < 768;
 

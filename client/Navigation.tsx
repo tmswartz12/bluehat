@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Container, NavDropdown, Nav, Badge } from "react-bootstrap";
 import { useStoreState, useStoreActions } from "./store";
 import { Link } from "react-router-dom";
@@ -23,6 +23,10 @@ const Navigation = () => {
   const size = useWindowSize();
 
   const collapseNavigation = Boolean(size.width < collapseSideNav);
+
+  useEffect(() => {
+    console.log("running");
+  }, [user && user.onboardingStatus]);
 
   if (user && user.onboardingStatus === "complete") {
     return (

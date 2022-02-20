@@ -21,7 +21,8 @@ export interface BusinessModel {
   data: Business;
   setBusiness: Action<BusinessModel, Business>;
   getBusiness: Thunk<BusinessModel, Business>;
-  onboarding: Thunk<BusinessModel, { user: User; business: Business }>;
+  onboarding: Thunk<BusinessModel, Business>;
+  setUser: Action<BusinessModel, User>;
 }
 
 const initialBusiness: Business = {
@@ -41,12 +42,21 @@ const business: BusinessModel = {
       );
       const business = data.business;
       actions.setBusiness(business);
+      actions.setUser(data.user);
     } catch (err) {
       console.log("err", err);
     }
   }),
   setBusiness: action((state, payload) => {
     state.data = payload;
+  }),
+  setUser: action((state, payload) => {
+    /**
+     * This is purely used to set the user state in the user model
+     * there is an actionOn event listener waiting for this action to be called
+     * We call business.setUser to update state and pass the updated user
+     * to the user model after onboarding is complete
+     */
   }),
 };
 
