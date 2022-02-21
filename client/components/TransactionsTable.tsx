@@ -143,16 +143,16 @@ const TransactionsTable = ({ allTransactions }: TransactionTableProps) => {
                     </DetailsCell>
                     {transaction.project ? <BlueHatTableCell>Unassigned</BlueHatTableCell> : <BlueHatTableCell>Assign a Project</BlueHatTableCell>}
                     <StageCell>
-                      <StageWrapper>
+                      <StageWrapper stage={transaction.stage} type={'receipt'}>
                         <FaReceipt />
                       </StageWrapper>
-                      <StageWrapper>
+                      <StageWrapper stage={transaction.stage} type={'project'}>
                         <MdDomain />
                       </StageWrapper>
-                      <StageWrapper>
+                      <StageWrapper stage={transaction.stage} type={'projectManagement'}>
                         <BiListPlus />
                       </StageWrapper>
-                      <StageWrapper>
+                      <StageWrapper stage={transaction.stage} type={'accounting'}>
                         <FaClipboardCheck />
                       </StageWrapper>
                     </StageCell>
