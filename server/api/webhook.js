@@ -4,6 +4,7 @@ const { authRequired } = require("../middleware/middleware");
 const ReceiptService = require("../services/receipt");
 const KYCService = require("../services/kyc");
 const KYBService = require("../services/kyb");
+const TransactionService = require("../services/transaction");
 
 const { Receipt } = require("../db");
 
@@ -50,6 +51,7 @@ router.post("/", async (req, res, next) => {
     }
     if (event === WEBHOOK_EVENTS.CARD_SPEND) {
       console.log("handle card spend", req.body.data);
+      await TransactionService.handleTransactionEvent(req.body.data);
       return res.json({ ok: true });
     }
   } catch (error) {

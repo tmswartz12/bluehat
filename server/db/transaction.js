@@ -3,9 +3,12 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const transactionSchema = new mongoose.Schema({
   business: { type: ObjectId, required: true, ref: "Business" },
+  user: { type: ObjectId, required: true, ref: "User" },
+  card: { type: ObjectId, required: true, ref: "Card" },
   receipt: { type: ObjectId, ref: "Receipt" },
   solidCardId: { type: String, required: true },
-  solidTransactionId: { type: String, required: true },
+  solidTransactionId: { type: String, required: true }, // not sure the difference between transaction and transfer
+  solidTransferId: { type: String, required: true },
   txnDate: { type: "Date", default: Date.now, required: true },
   amount: { type: String },
   title: { type: String },

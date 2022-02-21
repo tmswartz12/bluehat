@@ -133,7 +133,8 @@ const Cards = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow >
+                  {allCards.map(card => {
+                    return (<TableRow >
                     <DetailsCell>
                       <div>General Expense Card</div>
                       <div>
@@ -155,6 +156,8 @@ const Cards = () => {
                     <BlueHatTableCell>Yes</BlueHatTableCell>
                     <BlueHatTableCell>></BlueHatTableCell>
                   </TableRow>
+                    );
+                  })}
                 </tbody>
               </BlueHatTable>
             </Col>
