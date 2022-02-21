@@ -1,11 +1,21 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
+const STAGE = {
+  unassigned: "unassigned",
+  needsReceipt: "needsReceipt",
+  needsProject: "needsProject",
+  needsProjectManagement: "needsProjectManagement",
+  needsAccounting: "needsAccounting",
+  complete: "complete",
+};
+
 const transactionSchema = new mongoose.Schema({
   business: { type: ObjectId, required: true, ref: "Business" },
   user: { type: ObjectId, required: true, ref: "User" },
   card: { type: ObjectId, required: true, ref: "Card" },
   receipt: { type: ObjectId, ref: "Receipt" },
+  project: { type: ObjectId, ref: "Receipt" },
   solidCardId: { type: String, required: true },
   solidTransactionId: { type: String, required: true }, // not sure the difference between transaction and transfer
   solidTransferId: { type: String, required: true },
@@ -24,6 +34,11 @@ const transactionSchema = new mongoose.Schema({
     postalCode: String,
     merchantCategory: String,
     merchantCategoryCode: String,
+  },
+  stage: {
+    type: String,
+    enum: Object.values(STAGE),
+    default: STAGE.unassigned,
   },
   dateAdded: { type: "Date", default: Date.now, required: true },
 });
