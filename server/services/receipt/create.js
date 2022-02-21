@@ -1,18 +1,15 @@
-const { Receipt } = require("../../db");
+const { Receipt, Transaction } = require("../../db");
 const logger = require("pino")();
 
-const create = async (uploadId) => {
+const create = async (uploadId, s3Url, transactionId) => {
   try {
-    /**
-     * In order to get the user and business associated to this receipt
-     * we need to look at the transaction model
-     * once this endpoint is configured we will have the transaction._id
-     * from the req.params
-     */
+    const transaction = await Transaction.findOne({ _id: transactionId });
     return await Receipt.create({
-      //   user: user._id,
-      //   business: user.business,
       butlerLabsUploadId: uploadId,
+      transaction: transaction._id,
+      business: transaction.business,
+      user: transaction.user,
+      imageUrl: s3Url,
     });
   } catch (error) {
     logger.error(error);

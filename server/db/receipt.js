@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const receiptSchema = new mongoose.Schema({
-  // business: { type: ObjectId, required: true, ref: "Business" },
-  // user: { type: ObjectId, required: true, ref: "User" },
-  // transaction: { type: ObjectId, required: true, ref: "Transaction" },
-  butlerLabsUploadId: { type: String, required: true },
+  business: { type: ObjectId, required: true, ref: "Business" },
+  user: { type: ObjectId, required: true, ref: "User" },
+  transaction: { type: ObjectId, required: true, ref: "Transaction" },
+  butlerLabsUploadId: { type: String },
+  imageUrl: { type: String, required: true },
   items: [],
   total: { type: String },
   tax: { type: String },
