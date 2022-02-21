@@ -24,8 +24,6 @@ const handleTransactionEvent = async (event) => {
     } = event;
 
     const merchant = event.card.merchant;
-    console.log("merchant", merchant);
-
     const business = await Business.findOne({ solidBusinessId: businessId });
     const user = await User.findOne({ solidPersonId: personId });
     const card = await Card.findOne({ solidCardId: event.card.id });

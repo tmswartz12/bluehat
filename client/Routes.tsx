@@ -9,7 +9,7 @@ import {
 /* Import Files */
 import Cookies from "js-cookie";
 import Navigation from "./Navigation";
-import TestFileUpload from "./TestFileUpload";
+import TestFileUpload from "./components/FileUploader";
 import Register from "./components/Register";
 import Onboarding from "./components/Onboarding";
 import Dashboard from "./components/Dashboard";
@@ -21,6 +21,7 @@ import Company from "./components/Company";
 import history from "./history";
 import TopNav from "./TopNav";
 import SelectedProject from "./components/SelectedProject";
+import UploadReceipt from "./components/UploadReceipt";
 
 export default function Routes() {
   const user = useStoreState((state) => state.user.data);
@@ -94,7 +95,12 @@ export default function Routes() {
             component={() => <Transactions />}
           />
           ,
-          <Route exact path="/upload" component={() => <TestFileUpload />} />,
+          <Route
+            exact
+            path="/upload/:transactionId"
+            component={() => <UploadReceipt />}
+          />
+          ,
           {!showOnboarding() && [
             <Route path="/">
               <Redirect to="/" />
