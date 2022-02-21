@@ -4,7 +4,9 @@ const { Transaction, Business, User, Card } = require("../../db");
 const getAll = async (user) => {
   try {
     const business = await Business.findOne({ _id: user.business });
-    const transactions = await Transaction.find({ business: business._id });
+    const transactions = await Transaction.find({
+      business: business._id,
+    }).populate("user");
     return transactions;
   } catch (error) {
     logger.error(error);

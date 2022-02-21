@@ -17,6 +17,7 @@ import {
   TransactionSmallBody,
   StageWrapper,
 } from './Transactions.styled';
+import moment from 'moment';
 
 import {
   FaClipboardCheck,
@@ -33,9 +34,15 @@ import {
 } from 'react-icons/md';
 
 import TransactionsModal from './TransactionsModal';
+import { Transactions } from '../types/transaction';
+import { currencyFormatter } from '../util/currency-formatter';
 
 
-const TransactionsTable = ({ allTransactions }) => {
+interface TransactionTableProps {
+  allTransactions: Transactions
+}
+
+const TransactionsTable = ({ allTransactions }: TransactionTableProps) => {
   const [showModal, toggleModal] = useState(false);
   const [transaction, setTransaction] = useState(null);
 
@@ -127,14 +134,14 @@ const TransactionsTable = ({ allTransactions }) => {
 <TableRow onClick={() => handleSelectTransaction({ name: 'tyler' })}>
                     <BlueHatTableCell></BlueHatTableCell>
                     <DetailsCell>
-                      <div>F.W. Webb Plumbing Supply</div>
+                      <div>{transaction.merchant.merchantName}</div>
                       <div>
                         <TransactionSmallBody>
-                          Mar 25 | C. McDonough | Materials + Supplies
+                         {`${moment(transaction.txnDate).format('MMM DD')}`} | {`${transaction.user.firstName[0]}. ${transaction.user.lastName}`} | {transaction.merchant.merchantCategory}
                         </TransactionSmallBody>
                       </div>
                     </DetailsCell>
-                    <BlueHatTableCell>Huntington Hospital</BlueHatTableCell>
+                    {transaction.project ? <BlueHatTableCell>Unassigned</BlueHatTableCell> : <BlueHatTableCell>Assign a Project</BlueHatTableCell>}
                     <StageCell>
                       <StageWrapper>
                         <FaReceipt />
@@ -148,9 +155,8 @@ const TransactionsTable = ({ allTransactions }) => {
                       <StageWrapper>
                         <FaClipboardCheck />
                       </StageWrapper>
-
                     </StageCell>
-                    <BlueHatTableCell>$1,456.22</BlueHatTableCell>
+                    <BlueHatTableCell>{currencyFormatter(transaction.amount)}</BlueHatTableCell>
                     <BlueHatTableCell>$1.45</BlueHatTableCell>
                     <BlueHatTableCell>></BlueHatTableCell>
                   </TableRow>
