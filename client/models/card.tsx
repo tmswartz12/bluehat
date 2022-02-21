@@ -16,6 +16,17 @@ export interface CardModel {
   allCards: Cards;
   setCards: Action<CardModel, Cards>;
   getCards: Thunk<CardModel>;
+  createCard: Thunk<
+    CardModel,
+    {
+      label: string;
+      limitAmount: string;
+      limitInterval: string;
+      allowedCategories: string[];
+      blockedCategories: string[];
+      cardType: string;
+    }
+  >;
 }
 
 const initialCard: Card = {
@@ -38,6 +49,18 @@ const card: CardModel = {
       const { data } = await apiCaller("api/card", "get", null);
       const cards = data.cards;
       actions.setCards(cards);
+    } catch (err) {
+      console.log("err", err);
+    }
+  }),
+  createCard: thunk(async (actions, payload) => {
+    try {
+      actions.setLoading(true);
+      console.log({ payload });
+      const { data } = await apiCaller("api/card", "post", payload);
+      const cards = data.cards;
+      actions.setCards(cards);
+      actions.setLoading(false);
     } catch (err) {
       console.log("err", err);
     }

@@ -1,8 +1,9 @@
 const logger = require("pino")();
 const { Card, BankAccount, Business, User } = require("../../db");
 const SolidService = require("../solid");
+const BusinessService = require("../business");
 
-const create = async (user, businessId, cardBody) => {
+const create = async (user, cardBody) => {
   try {
     const {
       label,
@@ -15,13 +16,20 @@ const create = async (user, businessId, cardBody) => {
       employee,
     } = cardBody;
 
+    console.log("cardBody", cardBody);
+
     /**
      * TO DO... find our create an employee to associate the card to!
      */
 
     const foundUser = await User.findOne({ _id: user._id });
-    const business = await Business.findOne({ _id: businessId });
-    const bankAccount = await BankAccount.findOne({ business: business._id });
+    const business = await Business.findOne({ _id: foundUser.business });
+    let bankAccount = await BankAccount.findOne({ business: business._id });
+
+    if (!bankAccount) {
+      bankAccount = await BusinessService.createBankAccount(foundUser);
+    }
+
     const body = {
       cardType,
       label,

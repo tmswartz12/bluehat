@@ -29,12 +29,27 @@ const Cards = () => {
     (actions) => actions.card.getCards
   );
 
+  const createCard = useStoreActions(
+    (actions) => actions.card.createCard
+  );
+
   const allCards = useStoreState(
     (state) => state.card.allCards
   );
   useEffect(() => {
     getAllCards();
   }, []);
+
+  const handleAddCard = () => {
+    createCard({
+      label: 'Tylers card',
+      limitAmount: '1050.00',
+      limitInterval: 'monthly',
+      allowedCategories: [],
+      blockedCategories: [],
+      cardType: 'physical',
+    });
+  };
   return (
     <Container>
       <TopRow>
@@ -42,7 +57,7 @@ const Cards = () => {
           <Heading1>Cards</Heading1>
         </Col>
         <RightCol>
-          <PrimaryButton>Add Card</PrimaryButton>
+          <PrimaryButton onClick={() => handleAddCard()}>Add Card</PrimaryButton>
         </RightCol>
       </TopRow>
       {Boolean(allCards.length) && <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
