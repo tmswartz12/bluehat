@@ -15,8 +15,22 @@ import useWindowSize from "../util/useWindowSize";
 
 import TransactionsHeader from "./TransactionsHeader";
 import TransactionsTable from "./TransactionsTable";
+import { useStoreState, useStoreActions } from "../store";
 
 const Transactions = () => {
+  const getTransactions = useStoreActions(
+    (actions) => actions.transaction.getTransactions
+  );
+  const allTransactions = useStoreState(
+    (state) => state.transaction.allTransactions
+  );
+
+  console.log({ allTransactions });
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
   const [filter, setFilter] = useState("");
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -50,8 +64,8 @@ const Transactions = () => {
           </SecondaryNav>
         </Col>
       </Row>
-      <TransactionsHeader />
-      <TransactionsTable />
+      <TransactionsHeader allTransactions={allTransactions} />
+      <TransactionsTable allTransactions={allTransactions} />
     </Container>
   );
 };

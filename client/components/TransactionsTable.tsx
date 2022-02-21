@@ -35,7 +35,7 @@ import {
 import TransactionsModal from './TransactionsModal';
 
 
-const TransactionsTable = () => {
+const TransactionsTable = ({ allTransactions }) => {
   const [showModal, toggleModal] = useState(false);
   const [transaction, setTransaction] = useState(null);
 
@@ -46,6 +46,11 @@ const TransactionsTable = () => {
   return (
     <React.Fragment>
       <WhiteSiteRow>
+        {!allTransactions.length ?
+        <Col>
+              You have no transactions. Swipe your BlueHat card to see all of your transactions here.
+        </Col>
+        :
         <Col xs={12}>
           <Row>
             <Col>
@@ -117,7 +122,9 @@ const TransactionsTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow onClick={() => handleSelectTransaction({ name: 'tyler' })}>
+                  {allTransactions.map(transaction => {
+                    return (
+<TableRow onClick={() => handleSelectTransaction({ name: 'tyler' })}>
                     <BlueHatTableCell></BlueHatTableCell>
                     <DetailsCell>
                       <div>F.W. Webb Plumbing Supply</div>
@@ -146,8 +153,10 @@ const TransactionsTable = () => {
                     <BlueHatTableCell>$1,456.22</BlueHatTableCell>
                     <BlueHatTableCell>$1.45</BlueHatTableCell>
                     <BlueHatTableCell>></BlueHatTableCell>
-
                   </TableRow>
+                    );
+                  })}
+
                   <TableRow>
                     <BlueHatTableCell>
                       <div>
@@ -169,7 +178,7 @@ const TransactionsTable = () => {
               </BlueHatTable>
             </Col>
           </Row>
-        </Col>
+        </Col>}
       </WhiteSiteRow>
       <TransactionsModal
         show={showModal}

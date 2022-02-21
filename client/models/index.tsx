@@ -3,6 +3,7 @@ import user, { UserModel } from "./user";
 import business, { BusinessModel } from "./business";
 import card, { CardModel } from "./card";
 import project, { ProjectModel } from "./project";
+import transaction, { TransactionModel } from "./transaction";
 
 export interface StoreModel {
   user: UserModel;
@@ -10,6 +11,7 @@ export interface StoreModel {
   business: BusinessModel;
   card: CardModel;
   project: ProjectModel;
+  transaction: TransactionModel;
 }
 
 const model: StoreModel = {
@@ -18,6 +20,7 @@ const model: StoreModel = {
   business,
   card,
   project,
+  transaction,
 };
 
 export default model;

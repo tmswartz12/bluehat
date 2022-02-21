@@ -16,7 +16,7 @@ import { GrPowerCycle } from "react-icons/gr";
 import { BiListPlus } from "react-icons/bi";
 import { MdDomain } from "react-icons/md";
 
-const TransactionsHeader = () => {
+const TransactionsHeader = ({ allTransactions }) => {
   return (
     <WhiteSiteRow>
       <Col xs={12} md={12}>
