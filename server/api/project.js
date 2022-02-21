@@ -20,7 +20,9 @@ router.get(
   authRequired,
   async (req, res, next) => {
     try {
-      const projects = await ProjectService.getByTransaction(transactionId);
+      const projects = await ProjectService.getByTransaction(
+        req.params.transaction
+      );
       return res.json({ projects });
     } catch (error) {
       console.log("error", error);

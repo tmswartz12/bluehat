@@ -17,6 +17,7 @@ export interface ProjectModel {
   selectedProject: Project;
   setProjects: Action<ProjectModel, Projects>;
   getProjects: Thunk<ProjectModel>;
+  getProjectsByTransaction: Thunk<ProjectModel, string>;
 }
 
 const initialProject: Project = {
@@ -38,6 +39,19 @@ const project: ProjectModel = {
   getProjects: thunk(async (actions) => {
     try {
       const { data } = await apiCaller("api/project", "get", null);
+      const projects = data.projects;
+      actions.setProjects(projects);
+    } catch (err) {
+      console.log("err", err);
+    }
+  }),
+  getProjectsByTransaction: thunk(async (actions, transactionId) => {
+    try {
+      const { data } = await apiCaller(
+        `api/project/transaction/${transactionId}`,
+        "get",
+        null
+      );
       const projects = data.projects;
       actions.setProjects(projects);
     } catch (err) {

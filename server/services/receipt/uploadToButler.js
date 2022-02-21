@@ -5,7 +5,7 @@ var FormData = require("form-data");
 var fs = require("fs");
 const { exit } = require("process");
 
-const upload = async (file) => {
+const uploadToButler = async (file) => {
   try {
     const headers = {
       "Content-Type": "multipart/form-data",
@@ -49,4 +49,4 @@ const upload = async (file) => {
   }
 };
 
-module.exports = { upload };
+module.exports = { uploadToButler };

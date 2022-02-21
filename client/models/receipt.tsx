@@ -4,11 +4,12 @@ import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { StoreModel } from "./index";
 import axios from "axios";
+import { apiCaller } from "../util/apiCaller";
 
 export interface ReceiptModel {
   data: any;
   setReceipt: Action<ReceiptModel, User>;
-  uploadReceipt: Thunk<ReceiptModel>;
+  uploadReceipt: Thunk<ReceiptModel, { data: any; transactionId: string }>;
 }
 
 const initialReceipt: any = {};
@@ -20,9 +21,10 @@ const user: ReceiptModel = {
   }),
   uploadReceipt: thunk(async (actions, body) => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:8080/api/receipt/upload",
-        body
+      const { data } = await apiCaller(
+        `api/receipt/upload/${body.transactionId}`,
+        "post",
+        body.data
       );
       const receipt = data.receipt;
       actions.setReceipt(receipt);

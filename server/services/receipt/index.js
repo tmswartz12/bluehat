@@ -1,4 +1,5 @@
-const { upload } = require("./upload");
+const { uploadToButler } = require("./uploadToButler");
 const { create } = require("./create");
+const { uploadToS3 } = require("./uploadToS3");
 
-module.exports = { upload, create };
+module.exports = { uploadToButler, create, uploadToS3 };
