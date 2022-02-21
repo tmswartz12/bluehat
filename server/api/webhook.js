@@ -3,6 +3,7 @@ const axios = require("axios");
 const { authRequired } = require("../middleware/middleware");
 const ReceiptService = require("../services/receipt");
 const KYCService = require("../services/kyc");
+const KYBService = require("../services/kyb");
 
 const { Receipt } = require("../db");
 
@@ -40,6 +41,8 @@ router.post("/", async (req, res, next) => {
     }
     if (event === WEBHOOK_EVENTS.BUSINESS_KYC_APPROVED) {
       console.log("handle kyb approval", req.body.data);
+      await KYBService.handleKybEvent(req.body.data);
+
       /**
        * update KYB and create bank account for user
        */
