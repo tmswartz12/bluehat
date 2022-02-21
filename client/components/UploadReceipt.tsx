@@ -54,7 +54,7 @@ const UploadReceipt = () => {
             block
             onClick={() => onSubmit()}
             className="mt-3"
-            style={{ position: "fixed", bottom: 0, width: "100%", left: 0 }}
+            // style={{ position: "fixed", bottom: 0, width: "100%", left: 0 }}
           >
             Submit
           </PrimaryButton>

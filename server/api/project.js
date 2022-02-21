@@ -14,3 +14,17 @@ router.get("/", authRequired, async (req, res, next) => {
     return res.status(500).json({ error });
   }
 });
+
+router.get(
+  "/transaction/:transaction",
+  authRequired,
+  async (req, res, next) => {
+    try {
+      const projects = await ProjectService.getByTransaction(transactionId);
+      return res.json({ projects });
+    } catch (error) {
+      console.log("error", error);
+      return res.status(500).json({ error });
+    }
+  }
+);
