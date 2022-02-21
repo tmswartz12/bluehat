@@ -25,12 +25,16 @@ import { CompanySmallBody } from './Company.styled';
 
 const Company = () => {
   const business = useStoreState((state) => state.business.data);
+  const employees = useStoreState((state) => state.business.employees);
+
   const getBusiness = useStoreActions(
     (actions) => actions.business.getBusiness
   );
 
   useEffect(() => {
-    // getBusiness();
+    if (!business || !employees.length) {
+      getBusiness();
+    }
   }, []);
   return (
      <Container>
@@ -116,25 +120,31 @@ const Company = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow >
+                  {employees.map(employee => {
+                    const { firstName, lastName, email, role, phone } = employee;
+                    return (
+                    <TableRow >
                     <DetailsCell>
-                      <div>Tyler Swartz</div>
+                      <div>{`${firstName} ${lastName}`}</div>
                       <div>
                         <CompanySmallBody>
-                          tyler@bluehatcard.com
+                          {email}
                         </CompanySmallBody>
                       </div>
                     </DetailsCell>
                     <BlueHatTableCell>
-                      Owner
+                      {role}
                     </BlueHatTableCell>
-                    <BlueHatTableCell>617-872-4990</BlueHatTableCell>
+                    <BlueHatTableCell>{phone}</BlueHatTableCell>
                     <BlueHatTableCell>
                       Accepted
                     </BlueHatTableCell>
                     <BlueHatTableCell>$1,456.22</BlueHatTableCell>
                     <BlueHatTableCell>></BlueHatTableCell>
                   </TableRow>
+                    );
+                  })}
+
                 </tbody>
               </BlueHatTable>
             </Col>

@@ -9,5 +9,6 @@ export type User = {
   lastName?: string;
   email?: string;
   isAdmin?: boolean;
+  phone?: string;
   onboardingStatus: ONBOARDING_STATUS;
 };
