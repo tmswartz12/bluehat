@@ -1,9 +1,9 @@
 const { User, Business, Kyb } = require("../../db");
 const SolidService = require("../solid");
 const KybService = require("../kyb");
+const Util = require("../../util");
 
 const onboarding = async (user, request) => {
-  console.log("in the request", request);
   const {
     legalName,
     dba,
@@ -22,8 +22,8 @@ const onboarding = async (user, request) => {
     foundUser.title = title;
     foundUser.ownership = ownership;
     const business = {
-      legalName,
-      dba,
+      legalName: Util.cleanString(legalName),
+      dba: Util.cleanString(dba),
       entityType,
       idType,
       idNumber,
