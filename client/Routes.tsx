@@ -27,8 +27,14 @@ export default function Routes() {
   const getUser = useStoreActions((actions) => actions.user.getUser);
   const hasCookie = Boolean(Cookies.get("blueHatAuth"));
 
+  const business = useStoreState((state) => state.business.data);
+  const getBusiness = useStoreActions(
+    (actions) => actions.business.getBusiness
+  );
+
   useEffect(() => {
     getUser();
+    getBusiness();
   }, []);
 
   /**

@@ -8,6 +8,16 @@ const KybService = require("../services/kyb");
 
 module.exports = router;
 
+router.get("/", authRequired, async (req, res, next) => {
+  try {
+    const business = await BusinessService.getBundle(req.user);
+    return res.json({ business });
+  } catch (error) {
+    console.log("error", error);
+    return res.status(500).json({ error });
+  }
+});
+
 router.post("/onboarding", authRequired, async (req, res, next) => {
   try {
     const { business, user } = await BusinessService.onboarding(

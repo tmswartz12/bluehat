@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Table, Form, Card } from "react-bootstrap";
-import { PrimaryButton, SecondaryButton } from "../style/buttons";
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Table, Form, Card } from 'react-bootstrap';
+import { PrimaryButton, SecondaryButton } from '../style/buttons';
+import { useStoreState, useStoreActions } from '../store';
+
 
 import {
   WhiteSiteRow,
@@ -13,15 +15,23 @@ import {
   TopRow,
   RightCol,
   SecondaryNav,
-  SecondaryNavTab
-} from "../style/system";
-import { Heading1, Body } from "../style/typography";
+  SecondaryNavTab,
+} from '../style/system';
+import { Heading1, Body } from '../style/typography';
 
 
-import { CompanySmallBody } from "./Company.styled";
+import { CompanySmallBody } from './Company.styled';
 
 
 const Company = () => {
+  const business = useStoreState((state) => state.business.data);
+  const getBusiness = useStoreActions(
+    (actions) => actions.business.getBusiness
+  );
+
+  useEffect(() => {
+    // getBusiness();
+  }, []);
   return (
      <Container>
       <TopRow>

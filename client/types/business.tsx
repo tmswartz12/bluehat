@@ -23,3 +23,23 @@ export type Business = {
   title?: string;
   ownership?: string;
 };
+
+export type KYB = {
+  business: string;
+  dateAdded: string;
+  modifiedAt: string;
+  results: {
+    idv: string;
+    address: string;
+    dateOfBirth: string;
+    fraud: string;
+  };
+  address: string;
+  dateOfBirth: string;
+  fraud: string;
+  idv: string;
+  reviewMessage: string;
+  solidBusinessId: string;
+  status: string;
+  _id: string;
+};
