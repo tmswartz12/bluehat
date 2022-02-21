@@ -1,3 +1,4 @@
 const { handleTransactionEvent } = require("./handleTransactionEvent");
+const { getAll } = require("./getAll");
 
-module.exports = { handleTransactionEvent };
+module.exports = { handleTransactionEvent, getAll };

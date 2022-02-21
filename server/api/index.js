@@ -8,6 +8,7 @@ router.use("/business", require("./business"));
 router.use("/card", require("./card"));
 router.use("/project", require("./project"));
 router.use("/receipt", require("./receipt"));
+router.use("/transaction", require("./transaction"));
 router.use("/webhook", require("./webhook"));
 
 router.use((req, res, next) => {
