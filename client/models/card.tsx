@@ -24,7 +24,7 @@ const initialCard: Card = {
 
 const cards: Cards = [];
 
-const user: CardModel = {
+const card: CardModel = {
   allCards: cards,
   loading: false,
   setLoading: action((state, payload) => {
@@ -44,4 +44,4 @@ const user: CardModel = {
   }),
 };
 
-export default user;
+export default card;
