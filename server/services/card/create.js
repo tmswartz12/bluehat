@@ -16,8 +16,6 @@ const create = async (user, cardBody) => {
       employee,
     } = cardBody;
 
-    console.log("cardBody", cardBody);
-
     /**
      * TO DO... find our create an employee to associate the card to!
      */
