@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import history from '../history';
 import { PrimaryButton } from '../style/buttons';
@@ -19,8 +19,20 @@ import {
 import { Heading1 } from '../style/typography';
 
 import { ProjectSmallBody } from './Projects.styled';
+import { useStoreState, useStoreActions } from '../store';
+
 
 const Projects = () => {
+  const business = useStoreState((state) => state.business.data);
+  const allProjects = useStoreState((state) => state.project.projects);
+
+  const getProjects = useStoreActions(
+    (actions) => actions.project.getProjects
+  );
+
+  useEffect(() => {
+    getProjects();
+  }, []);
   return (
     <Container>
       <TopRow>
@@ -31,7 +43,7 @@ const Projects = () => {
           <PrimaryButton>Add Project</PrimaryButton>
         </RightCol>
       </TopRow>
-      <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
+      {Boolean(allProjects.length) && <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
         <Col>
           <SecondaryNav>
             <SecondaryNavTab
@@ -44,8 +56,11 @@ const Projects = () => {
             ></SecondaryNavTab>
           </SecondaryNav>
         </Col>
-      </Row>
+      </Row>}
       <WhiteSiteRow>
+      {!allProjects.length ? <Col>
+      You have not created any projects. Add one by clicking "Add Project" above.
+      </Col> :
       <Col xs={12}>
           <Row>
             <Col>
@@ -127,7 +142,7 @@ const Projects = () => {
               </BlueHatTable>
             </Col>
           </Row>
-        </Col>
+        </Col>}
       </WhiteSiteRow>
     </Container>
   );

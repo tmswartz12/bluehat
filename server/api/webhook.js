@@ -27,12 +27,18 @@ router.post("/", async (req, res, next) => {
 
     if (event === WEBHOOK_EVENTS.PERSON_KYC_APPROVED) {
       console.log("handle kyc approval", req.body.data);
+      return res.json({ ok: true });
     }
     if (event === WEBHOOK_EVENTS.BUSINESS_KYC_APPROVED) {
       console.log("handle kyb approval", req.body.data);
+      /**
+       * update KYB and create bank account for user
+       */
+      return res.json({ ok: true });
     }
     if (event === WEBHOOK_EVENTS.CARD_SPEND) {
       console.log("handle card spend", req.body.data);
+      return res.json({ ok: true });
     }
   } catch (error) {
     console.log("error", error);

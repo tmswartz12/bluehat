@@ -61,7 +61,7 @@ const Cards = () => {
       </Row>}
       <WhiteSiteRow>
       {!allCards.length ? <Col>
-      You have no not created any cards. Add one by clicking "Add Card" above.
+      You have not created any cards. Add one by clicking "Add Card" above.
       </Col> : <Col xs={12}>
           <Row>
             <Col>

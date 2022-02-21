@@ -6,6 +6,7 @@ router.use(attachUserToRequest);
 router.use("/user", require("./user"));
 router.use("/business", require("./business"));
 router.use("/card", require("./card"));
+router.use("/project", require("./project"));
 router.use("/receipt", require("./receipt"));
 router.use("/webhook", require("./webhook"));
 
