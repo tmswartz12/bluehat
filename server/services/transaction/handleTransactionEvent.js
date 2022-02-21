@@ -1,5 +1,6 @@
 const logger = require("pino")();
 const { Transaction, Business, User, Card } = require("../../db");
+const TwilioService = require("../twilio");
 
 const handleTransactionEvent = async (event) => {
   try {
@@ -23,6 +24,7 @@ const handleTransactionEvent = async (event) => {
     } = event;
 
     const merchant = event.card.merchant;
+    console.log("merchant", merchant);
 
     const business = await Business.findOne({ solidBusinessId: businessId });
     const user = await User.findOne({ solidPersonId: personId });
@@ -48,6 +50,8 @@ const handleTransactionEvent = async (event) => {
     /**
      * Handle text message
      */
+
+    await TwilioService.sendTransactionNotification(transaction, user);
 
     return transaction;
   } catch (error) {

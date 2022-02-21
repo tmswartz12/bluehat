@@ -66,6 +66,7 @@
     "save": "^2.4.0",
     "spinners-react": "^1.0.6",
     "styled-components": "^5.3.3",
+    "twilio": "^3.74.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

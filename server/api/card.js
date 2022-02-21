@@ -12,7 +12,6 @@ module.exports = router;
 router.post("/", authRequired, async (req, res, next) => {
   try {
     const user = req.user;
-    console.log("req.body", req.body);
     const card = await CardService.create(user, req.body);
     const cards = await CardService.getAll(user);
     return res.json({ card, cards });

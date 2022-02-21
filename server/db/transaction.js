@@ -16,7 +16,7 @@ const transactionSchema = new mongoose.Schema({
   description: { type: String },
   status: { type: String },
   subType: { type: String },
-  marchant: {
+  merchant: {
     merchantName: String,
     merchantCity: String,
     merchantState: String,
