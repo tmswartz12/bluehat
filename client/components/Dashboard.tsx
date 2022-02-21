@@ -14,7 +14,12 @@ import {
   LightButton,
 } from "../style/buttons";
 import { Heading1 } from "../style/typography";
-import { SecondaryNav, SecondaryNavTab, TopRow } from "../style/system";
+import {
+  BlueHatAlert,
+  SecondaryNav,
+  SecondaryNavTab,
+  TopRow,
+} from "../style/system";
 
 const Dashboard = () => {
   return (
@@ -46,6 +51,11 @@ const Dashboard = () => {
             <SecondaryNavTab eventKey="1" title="Tab 2"></SecondaryNavTab>
             <SecondaryNavTab eventKey="2" title="Tab 3"></SecondaryNavTab>
           </SecondaryNav>
+        </Col>
+      </Row>
+      <Row className="mt-3">
+        <Col>
+          <BlueHatAlert variant="primary">Hey</BlueHatAlert>
         </Col>
       </Row>
     </Container>

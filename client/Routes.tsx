@@ -42,6 +42,7 @@ export default function Routes() {
    */
   const showOnboarding = () => {
     if (user && user.onboardingStatus !== "complete") {
+      console.log("showOnboarding");
       return true;
     } else {
       return false;

@@ -50,7 +50,7 @@ const initialUser: User = {
   email: "",
   isAdmin: false,
   address: {},
-  onboardingStatus: "",
+  onboardingStatus: "complete",
 };
 
 const user: UserModel = {

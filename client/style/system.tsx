@@ -1,6 +1,15 @@
 import styled from "styled-components";
-import { Col, Row, ProgressBar, Table, Nav, Tab, Tabs } from "react-bootstrap";
-import { b500, g100, g600, g700, white } from "./colors";
+import {
+  Col,
+  Row,
+  ProgressBar,
+  Table,
+  Nav,
+  Tab,
+  Tabs,
+  Alert,
+} from "react-bootstrap";
+import { b400, b500, b800, g100, g600, g700, white } from "./colors";
 
 export const TopRow = styled(Row)`
   margin-top: 20px;
@@ -94,4 +103,18 @@ export const SecondaryNavTab = styled(Tab)`
     border-right: 0px !important;
     background-color: transparent !important;
   }
+`;
+
+export const BlueHatAlert = styled(Alert)`
+  border-radius: 0px !important;
+  color: ${(props) => {
+    if (props.variant === "primary") {
+      return `${white}`;
+    }
+  }};
+  background-color: ${(props) => {
+    if (props.variant === "primary") {
+      return `${b400}`;
+    }
+  }};
 `;
