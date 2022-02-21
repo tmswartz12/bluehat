@@ -35,7 +35,7 @@ const user: CardModel = {
   }),
   getCards: thunk(async (actions) => {
     try {
-      const { data } = await apiCaller("api/cards/", "get", null);
+      const { data } = await apiCaller("api/card", "get", null);
       const cards = data.cards;
       actions.setCards(cards);
     } catch (err) {

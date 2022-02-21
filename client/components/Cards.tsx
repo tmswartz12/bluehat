@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Table, Form, Card } from "react-bootstrap";
-import { PrimaryButton, SecondaryButton } from "../style/buttons";
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Table, Form, Card } from 'react-bootstrap';
+import { PrimaryButton, SecondaryButton } from '../style/buttons';
 
 import {
   WhiteSiteRow,
@@ -13,16 +13,28 @@ import {
   TopRow,
   RightCol,
   SecondaryNav,
-  SecondaryNavTab
-} from "../style/system";
-import { Heading1, Body } from "../style/typography";
+  SecondaryNavTab,
+} from '../style/system';
+import { Heading1, Body } from '../style/typography';
 
 import {
-  CardSmallBody
-} from './Cards.styled'
+  CardSmallBody,
+} from './Cards.styled';
+
+import { useStoreState, useStoreActions } from '../store';
 
 
 const Cards = () => {
+  const getAllCards = useStoreActions(
+    (actions) => actions.card.getCards
+  );
+
+  const allCards = useStoreState(
+    (state) => state.card.allCards
+  );
+  useEffect(() => {
+    getAllCards();
+  }, []);
   return (
     <Container>
       <TopRow>
@@ -33,7 +45,7 @@ const Cards = () => {
           <PrimaryButton>Add Card</PrimaryButton>
         </RightCol>
       </TopRow>
-      <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
+      {Boolean(allCards.length) && <Row style={{ paddingLeft: 20, paddingRight: 20 }}>
         <Col>
           <SecondaryNav>
             <SecondaryNavTab
@@ -46,10 +58,11 @@ const Cards = () => {
             ></SecondaryNavTab>
           </SecondaryNav>
         </Col>
-      </Row>
+      </Row>}
       <WhiteSiteRow>
-
-      <Col xs={12}>
+      {!allCards.length ? <Col>
+      You have no not created any cards. Add one by clicking "Add Card" above.
+      </Col> : <Col xs={12}>
           <Row>
             <Col>
               <Form>
@@ -131,7 +144,7 @@ const Cards = () => {
               </BlueHatTable>
             </Col>
           </Row>
-        </Col>
+        </Col>}
       </WhiteSiteRow>
     </Container>
   );
