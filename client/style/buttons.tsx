@@ -1,5 +1,7 @@
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
+import React from "react";
+import { SpinnerCircular } from "spinners-react";
 import {
   b500,
   b600,
@@ -244,3 +246,16 @@ export const LightButtonOutline = styled(BlueHatButton)`
     border: ${info} 1px solid !important;
   }
 `;
+
+export const LoadingButton = (props) => {
+  return (
+    <PrimaryButton block={props.block} className={props.className}>
+      <SpinnerCircular
+        size={20}
+        color="white"
+        secondaryColor={"transparent"}
+        speed={150}
+      />
+    </PrimaryButton>
+  );
+};

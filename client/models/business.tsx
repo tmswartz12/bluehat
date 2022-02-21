@@ -18,6 +18,8 @@ import { useStoreActions } from "../store";
 import { UserModel } from "./user";
 
 export interface BusinessModel {
+  loading: Boolean;
+  setLoading: Action<BusinessModel, Boolean>;
   data: Business;
   setBusiness: Action<BusinessModel, Business>;
   getBusiness: Thunk<BusinessModel, Business>;
@@ -33,7 +35,13 @@ const initialBusiness: Business = {
 
 const business: BusinessModel = {
   data: initialBusiness,
+  loading: false,
+  setLoading: action((state, payload) => {
+    state.loading = payload;
+  }),
   onboarding: thunk(async (actions, payload) => {
+    actions.setLoading(true);
+
     try {
       const { data } = await apiCaller(
         "api/business/onboarding",
@@ -43,6 +51,7 @@ const business: BusinessModel = {
       const business = data.business;
       actions.setBusiness(business);
       actions.setUser(data.user);
+      actions.setLoading(false);
     } catch (err) {
       console.log("err", err);
     }

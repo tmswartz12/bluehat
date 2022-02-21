@@ -12,7 +12,7 @@ import { useStoreState, useStoreActions } from "../store";
 
 import { Heading1, SmallBody } from "../style/typography";
 
-import { PrimaryButton } from "../style/buttons";
+import { PrimaryButton, LoadingButton } from "../style/buttons";
 import { US_STATES } from "../util/us-states";
 import { OnboardingProgress } from "./Onboarding.styled";
 
@@ -28,6 +28,7 @@ const UserAddress = () => {
   const submitUserAddress = useStoreActions(
     (actions) => actions.user.onboarding
   );
+  const loading = useStoreState((state) => state.user.loading);
 
   const formik = useFormik({
     initialValues: {
@@ -192,17 +193,18 @@ const UserAddress = () => {
       </Row>
       <Row className="mt-3">
         <Col xs={12}>
-          <PrimaryButton
-            block
-            className="mt-3"
-            // style={{ width: 400 }}
-            onClick={() => {
-              formik.submitForm(formik.values);
-            }}
-            variant="success"
-          >
-            Continue
-          </PrimaryButton>
+          {loading ? (
+            <LoadingButton block />
+          ) : (
+            <PrimaryButton
+              block
+              onClick={() => {
+                formik.submitForm(formik.values);
+              }}
+            >
+              Continue{" "}
+            </PrimaryButton>
+          )}
         </Col>
       </Row>
     </>

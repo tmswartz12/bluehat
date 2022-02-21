@@ -13,7 +13,7 @@ import { useStoreState, useStoreActions } from "../store";
 
 import { Heading1, SmallBody } from "../style/typography";
 
-import { PrimaryButton } from "../style/buttons";
+import { PrimaryButton, LoadingButton } from "../style/buttons";
 import { Progress } from "../style/system";
 import { OnboardingProgress } from "./Onboarding.styled";
 import { US_STATES } from "../util/us-states";
@@ -53,6 +53,7 @@ const BusinessInfo = () => {
   const submitBusinessInfo = useStoreActions(
     (actions) => actions.business.onboarding
   );
+  const loading = useStoreState((state) => state.business.loading);
 
   const formik = useFormik({
     initialValues: {
@@ -393,17 +394,18 @@ const BusinessInfo = () => {
       </Row>
       <Row className="mt-3">
         <Col xs={12}>
-          <PrimaryButton
-            block
-            className="mt-3"
-            // style={{ width: 400 }}
-            onClick={() => {
-              formik.submitForm(formik.values);
-            }}
-            variant="success"
-          >
-            Submit Application
-          </PrimaryButton>
+          {loading ? (
+            <LoadingButton block />
+          ) : (
+            <PrimaryButton
+              block
+              onClick={() => {
+                formik.submitForm(formik.values);
+              }}
+            >
+              Submit Application
+            </PrimaryButton>
+          )}
         </Col>
       </Row>
     </>

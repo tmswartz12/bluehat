@@ -1,6 +1,9 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useStoreState, useStoreActions } from "../store";
+import MoonLoader from "react-spinners/MoonLoader";
+import { SpinnerCircular } from "spinners-react";
+
 import {
   RegistrationPanelRight,
   RegistrationPanelLeft,
@@ -10,7 +13,7 @@ import { Formik, useFormikContext, useFormik } from "formik";
 import * as yup from "yup"; // for everything
 
 import { Heading1, SmallBody } from "../style/typography";
-import { PrimaryButton } from "../style/buttons";
+import { LoadingButton, PrimaryButton } from "../style/buttons";
 import {
   BlueHatFormInput,
   BlueHatForm,
@@ -23,6 +26,7 @@ const schema = yup.object({
 
 const Register = () => {
   const user = useStoreState((state) => state.user.data);
+  const loading = useStoreState((state) => state.user.loading);
   const register = useStoreActions((actions) => actions.user.register);
   const formik = useFormik({
     initialValues: {
@@ -83,18 +87,20 @@ const Register = () => {
               </BlueHatForm>
             </Col>
           </Row>
-          <Row>
+          <Row className="mt-3">
             <Col xs={12}>
-              <PrimaryButton
-                block
-                className="mt-3"
-                onClick={() => {
-                  formik.submitForm(formik.values);
-                }}
-                variant="success"
-              >
-                Get Started
-              </PrimaryButton>
+              {loading ? (
+                <LoadingButton block />
+              ) : (
+                <PrimaryButton
+                  block
+                  onClick={() => {
+                    formik.submitForm(formik.values);
+                  }}
+                >
+                  Get Started
+                </PrimaryButton>
+              )}
             </Col>
           </Row>
           <Row className="mt-3">

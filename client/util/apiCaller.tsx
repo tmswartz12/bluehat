@@ -9,6 +9,7 @@ export async function apiCaller(endpoint, method = "get", body) {
   let c = getAuthCookie();
 
   let headers;
+
   if (c && c.token) {
     headers = {
       "content-type": "application/json",

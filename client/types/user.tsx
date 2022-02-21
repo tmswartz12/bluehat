@@ -8,6 +8,6 @@ export type User = {
   firstName?: string;
   lastName?: string;
   email?: string;
-  isAdmin: boolean;
+  isAdmin?: boolean;
   onboardingStatus: ONBOARDING_STATUS;
 };

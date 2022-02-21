@@ -15,6 +15,8 @@ import { BusinessModel } from "./business";
 import { StoreModel } from "./index";
 
 export interface UserModel {
+  loading: Boolean;
+  setLoading: Action<UserModel, Boolean>;
   data: User;
   setUser: Action<UserModel, User>;
   getUser: Thunk<UserModel>;
@@ -53,6 +55,10 @@ const initialUser: User = {
 
 const user: UserModel = {
   data: initialUser,
+  loading: false,
+  setLoading: action((state, payload) => {
+    state.loading = payload;
+  }),
   setUser: action((state, payload) => {
     state.data = payload;
   }),
@@ -66,6 +72,7 @@ const user: UserModel = {
     }
   }),
   register: thunk(async (actions, payload) => {
+    actions.setLoading(true);
     try {
       const { data } = await apiCaller("api/user/signup", "post", payload);
       console.log("data", data);
@@ -73,16 +80,19 @@ const user: UserModel = {
       const authToken = data.authToken;
       setAuthCookie(user._id, authToken);
       actions.setUser(user);
+      actions.setLoading(false);
       history.push("/onboarding");
     } catch (err) {
       console.log("err", err);
     }
   }),
   onboarding: thunk(async (actions, payload) => {
+    actions.setLoading(true);
     try {
       const { data } = await apiCaller("api/user/onboarding", "post", payload);
       const user = data.user;
       actions.setUser(user);
+      actions.setLoading(false);
     } catch (err) {
       console.log("err", err);
     }
